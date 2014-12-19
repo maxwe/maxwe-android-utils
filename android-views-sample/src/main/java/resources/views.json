@@ -1,0 +1,10 @@
+{
+    "backgroundFlag": "drawable | color | file",
+    "backgroundId": "id | #FFFFFFFF | file path",
+    "graphics":"graphics是图形集合，每个元素都描述在graphic文件中",
+    "graphics": [
+        {},
+        {},
+        {}
+    ]
+}

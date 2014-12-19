@@ -1,0 +1,12 @@
+{
+    "nodeList": [
+        {"pid":"01","id":"0101","name":"北京","otherInfo":{"desc":"首都"},"nodeList":[]},
+        {"pid":"01","id":"0101","name":"北京","otherInfo":{"desc":"首都"},"nodeList":[]},
+        {"pid":"01","id":"0101","name":"北京","otherInfo":{"desc":"首都"},"nodeList":[]},
+        {"pid":"01","id":"0101","name":"北京","otherInfo":{"desc":"首都"},"nodeList":[]},
+        {"pid":"01","id":"0101","name":"北京","otherInfo":{"desc":"首都"},"nodeList":[]},
+        {"pid":"01","id":"0101","name":"北京","otherInfo":{"desc":"首都"},"nodeList":[]},
+        {"pid":"01","id":"0101","name":"北京","otherInfo":{"desc":"首都"},"nodeList":[]},
+        {"pid":"01","id":"0101","name":"北京","otherInfo":{"desc":"首都"},"nodeList":[]}
+    ]
+}
