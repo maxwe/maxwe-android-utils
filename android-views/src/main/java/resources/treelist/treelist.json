@@ -1,10 +1,8 @@
-{
-    "nodeList": [
-        {"pid":"00","id":"01","name":"北京","otherInfo":{},"nodeList":[{"pid":"01","id":"0101","name":"海淀","otherInfo":{},"nodeList":[]}]},
-        {"pid":"00","id":"02","name":"天津","otherInfo":{},"nodeList":[{"pid":"02","id":"0201","name":"南开","otherInfo":{},"nodeList":[]}]},
-        {"pid":"00","id":"03","name":"上海","otherInfo":{},"nodeList":[{"pid":"03","id":"0301","name":"静安","otherInfo":{},"nodeList":[]}]},
-        {"pid":"00","id":"04","name":"重庆","otherInfo":{},"nodeList":[{"pid":"04","id":"0401","name":"巴南","otherInfo":{},"nodeList":[]}]},
-        {"pid":"00","id":"05","name":"深圳","otherInfo":{},"nodeList":[{"pid":"05","id":"0501","name":"龙华","otherInfo":{},"nodeList":[]}]},
-        {"pid":"00","id":"06","name":"河南","otherInfo":{},"nodeList":[{"pid":"06","id":"0601","name":"郑州","otherInfo":{},"nodeList":[]}]}
-    ]
-}
+[
+    {"pid":"00","id":"01","name":"北京","unfold":"true","otherInfo":{},"nodeList":[{"pid":"01","id":"0101","name":"海淀","unfold":"true","otherInfo":{},"nodeList":[]}]},
+    {"pid":"00","id":"02","name":"天津","unfold":"true","otherInfo":{},"nodeList":[{"pid":"02","id":"0201","name":"南开","unfold":"true","otherInfo":{},"nodeList":[]}]},
+    {"pid":"00","id":"03","name":"上海","unfold":"true","otherInfo":{},"nodeList":[{"pid":"03","id":"0301","name":"静安","unfold":"true","otherInfo":{},"nodeList":[]}]},
+    {"pid":"00","id":"04","name":"重庆","unfold":"true","otherInfo":{},"nodeList":[{"pid":"04","id":"0401","name":"巴南","unfold":"true","otherInfo":{},"nodeList":[]}]},
+    {"pid":"00","id":"05","name":"深圳","unfold":"true","otherInfo":{},"nodeList":[{"pid":"05","id":"0501","name":"龙华","unfold":"true","otherInfo":{},"nodeList":[]}]},
+    {"pid":"00","id":"06","name":"河南","unfold":"true","otherInfo":{},"nodeList":[{"pid":"06","id":"0601","name":"郑州","unfold":"true","otherInfo":{},"nodeList":[]}]}
+]
