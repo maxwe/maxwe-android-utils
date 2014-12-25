@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">android-views-lib</string>
+
+    <!-- glistview 状态信息 -->
+    <string name="mx_listview_end_click_load_more">点击加载更多</string>
+    <string name="mx_listview_release_refresh">松开刷新</string>
+    <string name="mx_listview_pull_to_refresh">下拉刷新</string>
+    <string name="mx_listview_doing_head_refresh">正在刷新&#8230;</string>
+    <string name="mx_listview_doing_end_refresh">加载中&#8230;</string>
+    <string name="mx_listview_refresh_lasttime">最近更新&#160;&#058;&#160;</string>
 </resources>
