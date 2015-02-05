@@ -1,4 +1,4 @@
-package org.maxwe.android.pullrefresh;
+package org.maxwe.android.views.pullrefresh;
 
 import android.content.Context;
 import android.util.AttributeSet;

@@ -4,10 +4,10 @@
     android:layout_width = "match_parent"
     android:layout_height = "match_parent">
 
-  <org.maxwe.android.pullrefresh.PullRefreshListView
+  <org.maxwe.android.views.pullrefresh.PullRefreshListView
       android:id="@+id/mx_pullrefresh_listview"
       android:layout_width = "fill_parent"
       android:layout_height = "fill_parent">
-  </org.maxwe.android.pullrefresh.PullRefreshListView>
+  </org.maxwe.android.views.pullrefresh.PullRefreshListView>
 
 </LinearLayout>

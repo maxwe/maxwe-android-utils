@@ -11,7 +11,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
-import org.maxwe.android.pullrefresh.PullRefreshListView;
+import org.maxwe.android.views.pullrefresh.PullRefreshListView;
 import org.maxwe.android.views.sample.R;
 
 import java.util.ArrayList;
