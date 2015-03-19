@@ -2,4 +2,7 @@
 <resources>
 
     <string name="app_name">views</string>
+
+    <item name="bt_add_thread" type="id"/>
+    <item name="bt_add_view" type="id"/>
 </resources>
