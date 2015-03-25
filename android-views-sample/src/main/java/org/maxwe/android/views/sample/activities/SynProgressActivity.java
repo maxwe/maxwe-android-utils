@@ -63,6 +63,7 @@ public class SynProgressActivity extends Activity implements View.OnClickListene
             button.setOnClickListener(this);
             linearLayout1.addView(button);
             this.linearLayout.addView(linearLayout1);
+
             String threadId = "thread" + this.threadId;
             Marching marching = new Marching(threadId);
             instance.addMarching(threadId, marching);

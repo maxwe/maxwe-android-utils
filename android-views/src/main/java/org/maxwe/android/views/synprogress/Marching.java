@@ -14,7 +14,7 @@ import java.util.concurrent.ConcurrentMap;
  * Integer：后台任务完成进度值的类型。
  * Boolean：后台执行任务完成后返回结果的类型。
  */
-public class Marching extends AsyncTask<String,Integer,Boolean>{
+public abstract class Marching extends AsyncTask<String,Integer,Boolean>{
     public enum MarchingStatus{
         PRE,ING,END
     }
@@ -37,19 +37,7 @@ public class Marching extends AsyncTask<String,Integer,Boolean>{
      * 后台运行的方法，可以运行非UI线程，可以执行耗时的方法
      */
     @Override
-    protected Boolean doInBackground(String... strings) {
-        this.marchingStatus = MarchingStatus.ING;
-        for (int i=0;i<10;i++){
-            publishProgress(i);
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            System.out.println(id);
-        }
-        return true;
-    }
+    protected abstract Boolean doInBackground(String... strings);
 
     /**
      * 运行在UI线程中，在调用doInBackground()之前执行
@@ -81,7 +69,6 @@ public class Marching extends AsyncTask<String,Integer,Boolean>{
         Set<Map.Entry<String, MarchListener>> entries = this.marchListenerConcurrentMap.entrySet();
         for (Map.Entry<String,MarchListener> entry : entries){
             MarchListener value = entry.getValue();
-           // System.out.println("线程:" + this.id + " 正在更新:" + value.marchListenerId + " 当前进度:" + values[0]);
             value.onMarching(values[0]);
         }
     }
