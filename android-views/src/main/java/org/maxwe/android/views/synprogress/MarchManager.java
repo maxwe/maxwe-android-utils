@@ -30,12 +30,13 @@ public class MarchManager {
 
     public boolean removeMarching(String id){
         boolean result = false;
-
         Marching marching = marchingConcurrentMap.get(id);
-        boolean cancel = marching.cancel(true);
-        if (cancel){
-            marchingConcurrentMap.remove(id);
-            result = true;
+        if (marching != null){
+            boolean cancel = marching.cancel(true);
+            if (cancel){
+                marchingConcurrentMap.remove(id);
+                result = true;
+            }
         }
         return result;
     }
