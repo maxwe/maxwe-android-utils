@@ -65,7 +65,21 @@ public class SynProgressActivity extends Activity implements View.OnClickListene
             this.linearLayout.addView(linearLayout1);
 
             String threadId = "thread" + this.threadId;
-            Marching marching = new Marching(threadId);
+            Marching marching = new Marching(threadId){
+                @Override
+                protected Boolean doInBackground(String... strings) {
+                    for (int i=0;i<Integer.MAX_VALUE;i++){
+                        publishProgress(i);
+                        System.out.println(i);
+                        try {
+                            Thread.sleep(1000);
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
+                    }
+                    return null;
+                }
+            };
             instance.addMarching(threadId, marching);
             marching.executeOnExecutor(executor,threadId);
             linearLayout1.setTag(threadId);
