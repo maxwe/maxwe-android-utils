@@ -2,47 +2,32 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
-    <groupId>org.maxwe.android</groupId>
-    <artifactId>android-utils-parent</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
-    <name>android-utils-parent</name>
-
-    <modules>
-        <module>android-utils</module>
-        <module>android-utils-views</module>
-        <module>android-utils-sample</module>
-    </modules>
-
-    <properties>
-        <android.version>4.1.1.4</android.version>
-        <android-maven-plugin.version>3.9.0-rc.3</android-maven-plugin.version>
-        <timestamp>${maven.build.timestamp}</timestamp>
-        <maven.build.timestamp.format>yyyy-MM-dd_HH-mm</maven.build.timestamp.format>
-        <maven.complier.source>1.7</maven.complier.source>
-        <maven.complier.target>1.7</maven.complier.target>
-    </properties>
+    <parent>
+        <groupId>org.maxwe.android</groupId>
+        <artifactId>android-utils-parent</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>android-utils-sample</artifactId>
+    <packaging>apk</packaging>
+    <name>android-utils-sample</name>
 
     <dependencies>
         <dependency>
-            <groupId>org.maxwe.util</groupId>
-            <artifactId>util-json</artifactId>
+            <groupId>org.maxwe.android</groupId>
+            <artifactId>android-utils</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.google.android</groupId>
-            <artifactId>android</artifactId>
-            <version>4.1.1.4</version>
-            <scope>provided</scope>
+            <groupId>org.maxwe.android</groupId>
+            <artifactId>android-utils-views</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>aar</type>
         </dependency>
         <dependency>
             <groupId>com.google.android</groupId>
-            <artifactId>support-v4</artifactId>
-            <type>jar</type>
-            <version>r7</version>
+            <artifactId>android-test</artifactId>
+            <version>4.1.1.4</version>
         </dependency>
-
     </dependencies>
 
     <build>
@@ -53,6 +38,10 @@
                 <artifactId>android-maven-plugin</artifactId>
                 <version>${android-maven-plugin.version}</version>
                 <configuration>
+                    <androidManifestFile>${project.basedir}/AndroidManifest.xml</androidManifestFile>
+                    <assetsDirectory>${project.basedir}/assets</assetsDirectory>
+                    <resourceDirectory>${project.basedir}/res</resourceDirectory>
+                    <nativeLibrariesDirectory>${project.basedir}/src/main/native</nativeLibrariesDirectory>
                     <sdk>
                         <platform>19</platform>
                     </sdk>
