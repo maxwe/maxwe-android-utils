@@ -46,6 +46,11 @@ public abstract class Marching extends AsyncTask<String,Integer,Boolean>{
     @Override
     protected void onPreExecute() {
         this.marchingStatus = MarchingStatus.PRE;
+        Set<Map.Entry<String, MarchListener>> entries = this.marchListenerConcurrentMap.entrySet();
+        for (Map.Entry<String,MarchListener> entry : entries){
+            MarchListener value = entry.getValue();
+            value.onMarchPre(Json.createJsonObject().set(value.getKEY_MARCHLISTENER_ID(),id));
+        }
     }
 
     /**
@@ -57,7 +62,6 @@ public abstract class Marching extends AsyncTask<String,Integer,Boolean>{
         Set<Map.Entry<String, MarchListener>> entries = this.marchListenerConcurrentMap.entrySet();
         for (Map.Entry<String,MarchListener> entry : entries){
             MarchListener value = entry.getValue();
-            // System.out.println("线程:" + this.id + " 正在更新:" + value.marchListenerId + " 当前进度:" + values[0]);
             value.onMarchEnd(Json.createJsonObject().set(value.getKEY_MARCHLISTENER_ID(),id));
         }
     }
