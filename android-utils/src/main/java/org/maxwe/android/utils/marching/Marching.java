@@ -1,6 +1,7 @@
 package org.maxwe.android.utils.marching;
 
 import android.os.AsyncTask;
+import org.maxwe.json.Json;
 
 import java.util.Map;
 import java.util.Set;
@@ -57,7 +58,7 @@ public abstract class Marching extends AsyncTask<String,Integer,Boolean>{
         for (Map.Entry<String,MarchListener> entry : entries){
             MarchListener value = entry.getValue();
             // System.out.println("线程:" + this.id + " 正在更新:" + value.marchListenerId + " 当前进度:" + values[0]);
-            value.onMarchEnd(id);
+            value.onMarchEnd(Json.createJsonObject().set(value.getKEY_MARCHLISTENER_ID(),id));
         }
     }
 
@@ -69,7 +70,7 @@ public abstract class Marching extends AsyncTask<String,Integer,Boolean>{
         Set<Map.Entry<String, MarchListener>> entries = this.marchListenerConcurrentMap.entrySet();
         for (Map.Entry<String,MarchListener> entry : entries){
             MarchListener value = entry.getValue();
-            value.onMarching(values[0]);
+            value.onMarching(Json.createJsonObject().set(value.getKEY_PROGERSS(),values[0]));
         }
     }
 

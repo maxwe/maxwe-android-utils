@@ -12,6 +12,7 @@ import org.maxwe.android.utils.marching.MarchListener;
 import org.maxwe.android.utils.marching.MarchManager;
 import org.maxwe.android.utils.marching.Marching;
 import org.maxwe.android.utils.views.sample.R;
+import org.maxwe.json.JsonObject;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -95,22 +96,22 @@ public class SynProgressActivity extends Activity implements View.OnClickListene
             if (marching != null) {
                 marching.registerMarchListener(viewId, new MarchListener(textView) {
                     @Override
-                    public void onMarchPre() {
+                    public void onMarchPre(JsonObject jsonObject) {
 
                     }
 
                     @Override
-                    public void onMarching(int progress) {
-                        ((TextView) this.view).setText(progress + "");
+                    public void onMarching(JsonObject jsonObject) {
+                        ((TextView) this.view).setText(jsonObject.getNumber(this.KEY_PROGERSS) + "");
                     }
 
                     @Override
-                    public void onMarchEnd(String id) {
-                        MarchManager.getInstance().removeMarching(id);
+                    public void onMarchEnd(JsonObject jsonObject) {
+                        MarchManager.getInstance().removeMarching(this.KEY_MARCHLISTENER_ID);
                     }
 
                     @Override
-                    public void onMarchError() {
+                    public void onMarchError(JsonObject jsonObject) {
 
                     }
                 });

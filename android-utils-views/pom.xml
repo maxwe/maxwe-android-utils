@@ -10,30 +10,4 @@
     <artifactId>android-utils-views</artifactId>
     <packaging>aar</packaging>
     <name>android-utils-views</name>
-
-    <build>
-        <finalName>${project.artifactId}</finalName>
-        <plugins>
-            <plugin>
-                <groupId>com.jayway.maven.plugins.android.generation2</groupId>
-                <artifactId>android-maven-plugin</artifactId>
-                <version>${android-maven-plugin.version}</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <sdk>
-                        <platform>19</platform>
-                    </sdk>
-                    <undeployBeforeDeploy>true</undeployBeforeDeploy>
-                </configuration>
-            </plugin>
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
-                <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 </project>
