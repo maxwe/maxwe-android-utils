@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Activity1" />
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/download_label2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:focusable="false"
+            android:text="0" />
+
+        <TextView
+            android:id="@+id/download_state2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/download_label2"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/download_label2"
+            android:focusable="false"
+            android:text="状态"
+            android:visibility="invisible" />
+
+        <ProgressBar
+            android:id="@+id/download_pb2"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/download_label2"
+            android:layout_toLeftOf="@+id/download_stop_btn2"
+            android:focusable="false"
+            android:max="100" />
+
+        <Button
+            android:id="@+id/download_remove_btn2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/download_label2"
+            android:focusable="false"
+            android:text="删除"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/download_stop_btn2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/download_label2"
+            android:layout_toLeftOf="@+id/download_remove_btn2"
+            android:focusable="false"
+            android:text="开始" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/cleanButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="清除下载" />
+
+        <Button
+            android:id="@+id/jumpButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="跳转界面Activity2" />
+    </LinearLayout>
+
+</LinearLayout>

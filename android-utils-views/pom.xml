@@ -10,4 +10,13 @@
     <artifactId>android-utils-views</artifactId>
     <packaging>aar</packaging>
     <name>android-utils-views</name>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+                <artifactId>android-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>

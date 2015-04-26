@@ -1,11 +1,13 @@
 package org.maxwe.android.utils.views.sample.activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import org.maxwe.android.utils.views.image.MulitImage;
 import org.maxwe.android.utils.views.sample.R;
+import org.maxwe.android.utils.views.sample.activities.download.TestActivity1;
 
 import java.util.LinkedList;
 
@@ -28,6 +30,7 @@ public class MainActivity extends Activity {
         integers.add(R.drawable.ic_launcher);
         MulitImage mulitImage = new MulitImage(this, integers);
         this.setContentView(mulitImage);
+
     }
 
 

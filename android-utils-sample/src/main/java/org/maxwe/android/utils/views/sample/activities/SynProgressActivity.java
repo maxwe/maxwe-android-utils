@@ -1,6 +1,7 @@
 package org.maxwe.android.utils.views.sample.activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import org.maxwe.android.utils.marching.MarchListener;
 import org.maxwe.android.utils.marching.MarchManager;
 import org.maxwe.android.utils.marching.Marching;
 import org.maxwe.android.utils.views.sample.R;
+import org.maxwe.android.utils.views.sample.activities.download.TestActivity1;
 import org.maxwe.json.JsonObject;
 
 import java.util.concurrent.Executor;
@@ -33,19 +35,21 @@ public class SynProgressActivity extends Activity implements View.OnClickListene
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.horizontalScrollView = new HorizontalScrollView(this);
-        this.setContentView(this.horizontalScrollView);
-        this.linearLayout = new LinearLayout(this);
-        this.linearLayout.setOrientation(LinearLayout.HORIZONTAL);
-        this.horizontalScrollView.addView(this.linearLayout);
+//        this.horizontalScrollView = new HorizontalScrollView(this);
+//        this.setContentView(this.horizontalScrollView);
+//        this.linearLayout = new LinearLayout(this);
+//        this.linearLayout.setOrientation(LinearLayout.HORIZONTAL);
+//        this.horizontalScrollView.addView(this.linearLayout);
+//
+//
+//        Button addThread = new Button(this);
+//        addThread.setText("添加线程");
+//        addThread.setId(R.id.bt_add_thread);
+//        addThread.setOnClickListener(this);
+//        addThread.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
+//        this.linearLayout.addView(addThread);
 
-
-        Button addThread = new Button(this);
-        addThread.setText("添加线程");
-        addThread.setId(R.id.bt_add_thread);
-        addThread.setOnClickListener(this);
-        addThread.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        this.linearLayout.addView(addThread);
+        startActivity(new Intent(this, TestActivity1.class));
 
 
     }
