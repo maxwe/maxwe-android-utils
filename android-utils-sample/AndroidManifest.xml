@@ -28,23 +28,18 @@
       android:icon = "@drawable/ic_launcher"
       android:label = "@string/app_name">
       <uses-library android:name="android.test.runner" />
-    <activity
-        android:name = ".activities.SynProgressActivity"
-        android:theme = "@android:style/Theme.Light.NoTitleBar.Fullscreen">
-      <intent-filter>
-        <action android:name = "android.intent.action.MAIN"/>
-        <category android:name = "android.intent.category.LAUNCHER"/>
-      </intent-filter>
-    </activity>
+        <activity
+            android:name = "org.maxwe.android.utils.views.sample.activities.downloader.DownloaderActivity"
+            android:theme = "@android:style/Theme.Light.NoTitleBar.Fullscreen">
+          <intent-filter>
+            <action android:name = "android.intent.action.MAIN"/>
+            <category android:name = "android.intent.category.LAUNCHER"/>
+          </intent-filter>
+        </activity>
     <activity
         android:name = ".activities.PullRefreshListViewSample"
         android:theme = "@android:style/Theme.Light.NoTitleBar.Fullscreen"/>
-      <!-- 下载 -->
-      <service android:name="org.maxwe.android.utils.download.DownloadService">
-          <intent-filter>
-              <action android:name="org.maxwe.android.utils.download.service.action"/>
-          </intent-filter>
-      </service>
+
       <activity android:name=".activities.download.TestActivity1"/>
       <activity android:name=".activities.download.TestActivity2"/>
   </application>

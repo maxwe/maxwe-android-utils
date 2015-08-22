@@ -34,35 +34,38 @@
         <maven.complier.target>1.7</maven.complier.target>
     </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.maxwe.util</groupId>
-            <artifactId>util-json</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.android</groupId>
-            <artifactId>android</artifactId>
-            <version>4.1.1.4</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.google.android</groupId>
-            <artifactId>support-v4</artifactId>
-            <type>jar</type>
-            <version>r7</version>
-        </dependency>
-        <dependency>
-            <groupId>org.maxwe.util</groupId>
-            <artifactId>util-json</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.lidroid.xutils</groupId>
-            <artifactId>xUtils</artifactId>
-            <version>2.6.14</version>
-        </dependency>
-    </dependencies>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.google.android</groupId>
+                <artifactId>android</artifactId>
+                <version>4.1.1.4</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.google.android</groupId>
+                <artifactId>support-v4</artifactId>
+                <type>jar</type>
+                <version>r7</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>2.5.4</version>
+            </dependency>
+            <dependency>
+                <groupId>com.jiechic.library</groupId>
+                <artifactId>xUtils</artifactId>
+                <version>2.6.14</version>
+                <type>aar</type>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.12</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <finalName>${project.artifactId}</finalName>
