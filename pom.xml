@@ -17,7 +17,6 @@
         </repository>
     </distributionManagement>
 
-
     <modules>
         <module>android-utils</module>
         <module>android-utils-views</module>
