@@ -15,6 +15,12 @@
             <url>http://192.168.10.8:8081/nexus/content/repositories/retech</url>
         </repository>
     </distributionManagement>
+    <repositories>
+        <repository>
+            <id>retech</id>
+            <url>http://192.168.10.8:8081/nexus/content/repositories/retech</url>
+        </repository>
+    </repositories>
 
     <modules>
         <module>android-utils</module>

@@ -1,9 +1,10 @@
 package org.maxwe.android.utils.email;
-import javax.mail.Message;
-import javax.mail.Session;
-import javax.mail.Transport;
+import javax.mail.*;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
+import java.util.Date;
 import java.util.Properties;
 
 /**
@@ -17,40 +18,39 @@ public class EmailSender {
         defaultEmailSender("hello world");
     }
 
+    private static int port = 25;  //smtp协议使用的是25号端口
+    private static String server = "smtp.sina.com"; // 发件人邮件服务器
+    private static String user = "yun_chang_yue@sina.com";   // 使用者账号
+    private static String password = "Retech654321"; //使用者密码
+    private static String toEmail = "app@retechcorp.com";
+    private static String title = "云畅阅-Android客户端-意见反馈";
+
     public static void defaultEmailSender(String message) throws Exception {
-        Properties prop = new Properties();
-        prop.setProperty("mail.host", "smtp.sina.com");
-        prop.setProperty("mail.transport.protocol", "smtp");
-        prop.setProperty("mail.smtp.auth", "true");
-        //使用JavaMail发送邮件的5个步骤
-        //1、创建session
-        Session session = Session.getInstance(prop);
-        //开启Session的debug模式，这样就可以查看到程序发送Email的运行状态
-        session.setDebug(true);
-        //2、通过session得到transport对象
-        Transport ts = session.getTransport();
-        //3、使用邮箱的用户名和密码连上邮件服务器，发送邮件时，发件人需要提交邮箱的用户名和密码给smtp服务器，用户名和密码都通过验证之后才能够正常发送邮件给收件人。
-        ts.connect("smtp.sina.com", "yun_chang_yue@sina.com", "Retech654321");
-        //4、创建邮件
-        MimeMessage simpleMail = createSimpleMail(session, message);
-        //5、发送邮件
-        ts.sendMessage(simpleMail, simpleMail.getAllRecipients());
-        ts.close();
-    }
+        Properties props = new Properties();
+        props.put("mail.smtp.host", server);
+        props.put("mail.smtp.port", String.valueOf(port));
+        props.put("mail.smtp.auth", "true");
+        Transport transport = null;
+        Session session = Session.getDefaultInstance(props, null);
+        MimeMessage msg = new MimeMessage(session);
 
-    private static MimeMessage createSimpleMail(Session session,String message) throws Exception {
-        //创建邮件对象
-        MimeMessage mimeMessage = new MimeMessage(session);
-        //指明邮件的发件人
-        mimeMessage.setFrom(new InternetAddress("yun_chang_yue@sina.com"));
-        //指明邮件的收件人，现在发件人和收件人是一样的，那就是自己给自己发
-        mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress("app@retechcorp.com"));
-        //邮件的标题
-        mimeMessage.setSubject("云畅阅-Android客户端-意见反馈");
-        //邮件的文本内容
-        mimeMessage.setContent(message, "text/html;charset=UTF-8");
-        //返回创建好的邮件对象
-        return mimeMessage;
+        transport = session.getTransport("smtp");
+        transport.connect(server, user, password);    //建立与服务器连接
+        msg.setSentDate(new Date());
+        InternetAddress fromAddress = null;
+        fromAddress = new InternetAddress(user);
+        msg.setFrom(fromAddress);
+        InternetAddress[] toAddress = new InternetAddress[1];
+        toAddress[0] = new InternetAddress(toEmail);
+        msg.setRecipients(Message.RecipientType.TO, toAddress);
+        msg.setSubject(title, "UTF-8");            //设置邮件标题
+        MimeMultipart multi = new MimeMultipart();   //代表整个邮件邮件
+        BodyPart textBodyPart = new MimeBodyPart();  //设置正文对象
+        textBodyPart.setText(message);                  //设置正文
+        multi.addBodyPart(textBodyPart);             //添加正文到邮件
+        msg.setContent(multi);                      //将整个邮件添加到message中
+        msg.saveChanges();
+        transport.sendMessage(msg, msg.getAllRecipients());  //发送邮件
+        transport.close();
     }
-
 }

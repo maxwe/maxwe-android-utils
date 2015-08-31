@@ -31,10 +31,21 @@
             <artifactId>support-v4</artifactId>
         </dependency>
         <dependency>
-            <groupId>javax.mail</groupId>
-            <artifactId>mail</artifactId>
-            <version>1.5.0-b01</version>
+            <groupId>com.google.android.email</groupId>
+            <artifactId>activation</artifactId>
+            <version>1.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.google.android.email</groupId>
+            <artifactId>additionnal</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.android.email</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.0</version>
+        </dependency>
+
     </dependencies>
 
     <build>
