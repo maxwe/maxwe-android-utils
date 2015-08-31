@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.maxwe.android</groupId>
         <artifactId>android-utils-parent</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0</version>
     </parent>
     <artifactId>android-utils-sample</artifactId>
     <packaging>apk</packaging>
@@ -15,13 +15,13 @@
         <dependency>
             <groupId>org.maxwe.android</groupId>
             <artifactId>android-utils</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.0</version>
             <type>aar</type>
         </dependency>
         <dependency>
             <groupId>org.maxwe.android</groupId>
             <artifactId>android-utils-views</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.0</version>
             <type>aar</type>
         </dependency>
         <dependency>

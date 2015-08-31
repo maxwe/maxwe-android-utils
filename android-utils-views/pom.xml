@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.maxwe.android</groupId>
         <artifactId>android-utils-parent</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0</version>
     </parent>
     <artifactId>android-utils-views</artifactId>
     <packaging>aar</packaging>
@@ -23,7 +23,18 @@
         <dependency>
             <groupId>org.maxwe.android</groupId>
             <artifactId>android-utils</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.0</version>
+            <type>aar</type>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+                <artifactId>android-maven-plugin</artifactId>
+                <version>${android-maven-plugin.version}</version>
+            </plugin>
+        </plugins>
+    </build>
 </project>

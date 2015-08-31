@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.maxwe.android</groupId>
         <artifactId>android-utils-parent</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0</version>
     </parent>
     <artifactId>android-utils</artifactId>
     <packaging>aar</packaging>
@@ -30,6 +30,21 @@
             <groupId>com.google.android</groupId>
             <artifactId>support-v4</artifactId>
         </dependency>
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.5.0-b01</version>
+        </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+                <artifactId>android-maven-plugin</artifactId>
+                <version>${android-maven-plugin.version}</version>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
