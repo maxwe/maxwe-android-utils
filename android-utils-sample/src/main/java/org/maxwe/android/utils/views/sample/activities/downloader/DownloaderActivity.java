@@ -197,7 +197,8 @@ public class DownloaderActivity extends Activity implements View.OnClickListener
 
         @Override
         public String getRemoteUri() {
-            return "http://192.168.1.116:8080/test.zip";
+//            return "http://mqh.icloud-media.com:8080/mqh/uploads/enterprise/000/000/037/resources/000/000/914/注册执业销售经理V2.0.zip";
+            return "http://mqh.icloud-media.com:8080/mqh/uploads/enterprise/000/000/037/resources/000/000/905/产品画册-奥迪A7V2.0.zip";
         }
 
         @Override
@@ -231,17 +232,18 @@ public class DownloaderActivity extends Activity implements View.OnClickListener
                 progressBar.setMax((int)total);
                 progressBar.setProgress((int) current);
             }
-            System.out.println("================progress==================");
+            System.out.println("================progress==================" + current + " / " + total);
         }
 
         @Override
         public void onDownloadError(HttpException error, String msg) {
-            System.out.println("================error==================");
+            System.out.println("================error==================" + msg);
+            error.printStackTrace();
         }
 
         @Override
         public void onDownloadFinish(ResponseInfo<File> responseInfo) {
-            System.out.println("================finish==================");
+            System.out.println("================finish==================" + responseInfo.contentLength);
         }
 
         @Override

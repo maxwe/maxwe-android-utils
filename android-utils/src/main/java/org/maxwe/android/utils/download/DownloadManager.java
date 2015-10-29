@@ -223,6 +223,7 @@ public class DownloadManager {
                 true, // 如果目标文件存在，接着未完成的部分继续下载。服务器不支持RANGE时将从新下载。
                 false, // 如果从请求返回信息中获取到文件名，下载完成后自动重命名。
                 new RequestCallBack<File>() {
+                    long total;
                     @Override
                     public void onStart() {
                         downloader.onDownloadStart();
@@ -230,13 +231,18 @@ public class DownloadManager {
 
                     @Override
                     public void onLoading(long total, long current, boolean isUploading) {
+                        this.total = total;
                         downloader.onDownloadProgress(total, current);
                     }
 
                     @Override
                     public void onSuccess(ResponseInfo<File> responseInfo) {
-                        downloader.onDownloadFinish(responseInfo);
-                        finishDownloader(downloader);
+                        if (responseInfo.result.length() < this.total){
+                            onFailure(new HttpException("本地文件数据量(" + responseInfo.result.length() + ")小于网络文件数据量(" + this.total + ")"),"本地文件数据量(" + responseInfo.result.length() + ")小于网络文件数据量(" + this.total + ")");
+                        }else{
+                            downloader.onDownloadFinish(responseInfo);
+                            finishDownloader(downloader);
+                        }
                     }
 
 
