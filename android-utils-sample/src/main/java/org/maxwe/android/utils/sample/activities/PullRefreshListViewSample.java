@@ -1,4 +1,4 @@
-package org.maxwe.android.utils.views.sample.activities;
+package org.maxwe.android.utils.sample.activities;
 
 import android.app.Activity;
 import android.content.Context;
@@ -12,7 +12,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 import org.maxwe.android.utils.views.pullrefresh.PullRefreshListView;
-import org.maxwe.android.utils.views.sample.R;
+import org.maxwe.android.utils.sample.R;
 
 import java.util.ArrayList;
 import java.util.List;

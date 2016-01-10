@@ -1,4 +1,4 @@
-package org.maxwe.android.utils.views.sample.download;
+package org.maxwe.android.utils.sample.download;
 
 import org.maxwe.android.utils.download.DownloadManager;
 import org.maxwe.android.utils.download.IDownloader;

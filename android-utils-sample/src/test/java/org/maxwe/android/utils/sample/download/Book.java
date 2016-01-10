@@ -1,4 +1,4 @@
-package org.maxwe.android.utils.views.sample.download;
+package org.maxwe.android.utils.sample.download;
 
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.RequestParams;

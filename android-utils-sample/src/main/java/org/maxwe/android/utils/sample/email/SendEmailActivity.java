@@ -1,4 +1,4 @@
-package org.maxwe.android.utils.views.sample.activities.email;
+package org.maxwe.android.utils.sample.email;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import org.maxwe.android.utils.email.EmailSender;
-import org.maxwe.android.utils.views.sample.R;
+import org.maxwe.android.utils.sample.R;
 
 /**
  * Created by Pengwei Ding on 2015-08-31 17:47.

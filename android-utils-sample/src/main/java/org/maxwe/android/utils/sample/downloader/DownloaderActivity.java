@@ -1,4 +1,4 @@
-package org.maxwe.android.utils.views.sample.activities.downloader;
+package org.maxwe.android.utils.sample.downloader;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -11,7 +11,7 @@ import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseInfo;
 import org.maxwe.android.utils.download.DownloadManager;
 import org.maxwe.android.utils.download.IDownloader;
-import org.maxwe.android.utils.views.sample.R;
+import org.maxwe.android.utils.sample.R;
 
 import java.io.File;
 import java.util.LinkedList;
