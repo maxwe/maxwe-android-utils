@@ -8,5 +8,6 @@
             android:orientation="vertical">
         <Button android:id="@+id/downloader" android:text="下载状态同步" android:layout_width="match_parent" android:layout_height="wrap_content" android:onClick="onClick"/>
         <Button android:id="@+id/hexagon" android:text="六边形列阵" android:layout_width="match_parent" android:layout_height="wrap_content" android:onClick="onClick"/>
+        <Button android:id="@+id/material_design_tablist" android:text="material_design_tablist" android:layout_width="match_parent" android:layout_height="wrap_content" android:onClick="onClick"/>
     </LinearLayout>
 </ScrollView>

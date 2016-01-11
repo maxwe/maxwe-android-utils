@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import org.maxwe.android.utils.sample.R;
 import org.maxwe.android.utils.sample.hexagon.HexagonActivity;
+import org.maxwe.android.utils.sample.tablist.TabListActivity;
 
 /**
  * Created by dingpengwei on 10/23/14.
@@ -25,6 +26,9 @@ public class MainActivity extends Activity implements View.OnClickListener{
         int id = v.getId();
         if (id == R.id.hexagon){
             Intent intent = new Intent(this, HexagonActivity.class);
+            this.startActivity(intent);
+        }else if (id == R.id.material_design_tablist){
+            Intent intent = new Intent(this, TabListActivity.class);
             this.startActivity(intent);
         }
     }

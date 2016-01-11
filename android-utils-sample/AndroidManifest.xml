@@ -34,5 +34,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".hexagon.HexagonActivity" android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"></activity>
+        <activity android:name=".tablist.TabListActivity" android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"></activity>
     </application>
 </manifest>
