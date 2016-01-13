@@ -77,24 +77,13 @@ public class TabListContainer extends LinearLayout {
                  */
             }
 
-            if (marginTopOfTitleContainer > -heightOfTitle) {
+            if ((marginTopOfTitleContainer > -heightOfTitle || (this.contentContainer.getHeight() >= this.getHeight() && currentTouchMoveY > preTouchMoveY)) ) {
                 this.marginTopOfTitleContainer += currentTouchMoveY - preTouchMoveY;
                 this.titleContainer.layout(0, (int) this.marginTopOfTitleContainer, this.getWidth(), (int) (this.marginTopOfTitleContainer + heightOfTitle));
                 this.contentContainer.layout(0,(int) (this.marginTopOfTitleContainer + heightOfTitle),this.getWidth(),this.getHeight());
                 this.preTouchMoveY = ev.getRawY();
                 return false;
-            } else {
-
             }
-            int contentContainerHeight = this.contentContainer.getHeight();
-//            if (contentContainerHeight == this.getHeight()){
-//                this.titleContainer.layout(0, 0, this.getWidth(), (int) (titleContainerHeight - (preTouchMoveY - currentTouchMoveY)));
-//                this.contentContainer.layout(0,titleContainerHeight,this.getWidth(),this.getHeight());
-//                this.preTouchMoveY = ev.getRawY();
-//                return false;
-//            }
-
-
             return super.dispatchTouchEvent(ev);
 
         } else if (MotionEvent.ACTION_UP == action) {
