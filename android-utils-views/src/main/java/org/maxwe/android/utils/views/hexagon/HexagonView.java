@@ -64,17 +64,35 @@ public class HexagonView extends RelativeLayout{
         float eventY = event.getY();
         if (MotionEvent.ACTION_DOWN == action){
             LinkedList<Point> hexagonPoints = this.getHexagonPoints();
-            Point point0 = hexagonPoints.get(0);
-            Point point3 = hexagonPoints.get(3);
-            if (eventX > point3.getX() && eventX < point0.getX() && eventY > point0.getY() && eventY < point3.getY()) {
+//            Point point0 = hexagonPoints.get(0);
+//            Point point3 = hexagonPoints.get(3);
+//            if (eventX > point3.getX() && eventX < point0.getX() && eventY > point0.getY() && eventY < point3.getY()) {
+//                /**
+//                 * 由象限中的四个点连接而成的矩形范围
+//                 */
+//                return super.onTouchEvent(event);
+//            }
+            if (isFallInto(eventX,eventY)){
                 /**
-                 * 由象限中的四个点连接而成的矩形范围
+                 * 落入六边形的内接圆中
                  */
                 return super.onTouchEvent(event);
             }
             return false;
         }
         return super.onTouchEvent(event);
+    }
+
+    private boolean isFallInto(float pointX,float pointY){
+        float innerRadius = (float)((this.sideLength / 2) * Math.cos(Math.PI / 6));
+        float centerX = this.sideLength / 2;
+        float centerY = this.sideLength / 2;
+
+        float pointDistance = (float) Math.sqrt(Math.pow(Math.abs(centerX - pointX), 2) + Math.pow(Math.abs(centerY - pointY), 2));
+        if (pointDistance < innerRadius){
+            return true;
+        }
+        return false;
     }
 
 
