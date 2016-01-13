@@ -40,19 +40,22 @@ public class TabListContainer extends LinearLayout {
         super.onLayout(changed, l, t, r, b);
         View childAt0 = this.getChildAt(0);
         View childAt1 = this.getChildAt(1);
-        if (childAt0 == null || !(childAt0 instanceof TitleContainer)){
+        if (childAt0 == null || !(childAt0 instanceof TitleContainer)) {
             new Throwable("标题容器不能为空并且类型是：" + TitleContainer.class.getName());
             return;
         }
-        if (childAt1 == null || !(childAt1 instanceof ContentContainer)){
+        if (childAt1 == null || !(childAt1 instanceof ContentContainer)) {
             new Throwable("内容容器不能为空并且类型是：" + ContentContainer.class.getName());
             return;
         }
-        this.titleContainer = (TitleContainer)childAt0;
-        this.contentContainer = (ContentContainer)childAt1;
+        this.titleContainer = (TitleContainer) childAt0;
+        this.contentContainer = (ContentContainer) childAt1;
     }
 
+    private float marginTopOfTitleContainer = -1;
+    private float heightOfTitle = -1;
     private float preTouchMoveY;
+
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
@@ -60,34 +63,42 @@ public class TabListContainer extends LinearLayout {
         float currentTouchMoveY = ev.getRawY();
         if (MotionEvent.ACTION_DOWN == action) {
             preTouchMoveY = currentTouchMoveY;
+            if (heightOfTitle == -1) {
+                this.heightOfTitle = this.titleContainer.getHeight();
+            }
         } else if (MotionEvent.ACTION_MOVE == action) {
-            if (currentTouchMoveY > this.preTouchMoveY){
+            if (currentTouchMoveY > this.preTouchMoveY) {
                 /**
                  * 手指向下移动
                  */
-            }else{
+            } else {
                 /**
                  * 手指向上移动
                  */
             }
-            int titleContainerHeight = this.titleContainer.getHeight();
-            if (titleContainerHeight > 0) {
-                this.titleContainer.layout(0, 0, this.getWidth(), (int) (titleContainerHeight - (preTouchMoveY - currentTouchMoveY)));
-                this.contentContainer.layout(0,titleContainerHeight,this.getWidth(),this.getHeight());
+
+            if (marginTopOfTitleContainer > -heightOfTitle) {
+                this.marginTopOfTitleContainer += currentTouchMoveY - preTouchMoveY;
+                this.titleContainer.layout(0, (int) this.marginTopOfTitleContainer, this.getWidth(), (int) (this.marginTopOfTitleContainer + heightOfTitle));
+                this.contentContainer.layout(0,(int) (this.marginTopOfTitleContainer + heightOfTitle),this.getWidth(),this.getHeight());
                 this.preTouchMoveY = ev.getRawY();
                 return false;
+            } else {
+
             }
             int contentContainerHeight = this.contentContainer.getHeight();
-            if (contentContainerHeight == this.getHeight()){
-                this.titleContainer.layout(0, 0, this.getWidth(), (int) (titleContainerHeight - (preTouchMoveY - currentTouchMoveY)));
-                this.contentContainer.layout(0,titleContainerHeight,this.getWidth(),this.getHeight());
-                this.preTouchMoveY = ev.getRawY();
-                return false;
-            }
+//            if (contentContainerHeight == this.getHeight()){
+//                this.titleContainer.layout(0, 0, this.getWidth(), (int) (titleContainerHeight - (preTouchMoveY - currentTouchMoveY)));
+//                this.contentContainer.layout(0,titleContainerHeight,this.getWidth(),this.getHeight());
+//                this.preTouchMoveY = ev.getRawY();
+//                return false;
+//            }
+
 
             return super.dispatchTouchEvent(ev);
 
         } else if (MotionEvent.ACTION_UP == action) {
+
         }
         return super.dispatchTouchEvent(ev);
     }
