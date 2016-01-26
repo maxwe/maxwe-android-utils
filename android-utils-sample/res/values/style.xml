@@ -11,4 +11,17 @@
         <item name="android:windowIsFloating">true</item><!-- 是否浮现在activity之上 -->
         <item name="android:backgroundDimEnabled">true</item><!-- 模糊 -->
     </style>
+    
+    <style name="org_maxwe_android_utils_hexagon_item">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:clickable">true</item>
+        <item name="android:onClick">onClick</item>
+        <item name="android:background">@drawable/org_maxwe_hexagon_bg</item>
+    </style>
+    <style name="org_maxwe_android_utils_hexagon_item_1">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@drawable/index_01</item>
+    </style>
 </resources>

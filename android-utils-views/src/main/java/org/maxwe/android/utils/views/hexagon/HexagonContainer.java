@@ -19,11 +19,11 @@ public class HexagonContainer extends RelativeLayout {
     private int containerHeight;
     private int column;
 
-    public HexagonContainer(Context context, LinkedList<HexagonView> hexagonViews,int column) {
+    public HexagonContainer(Context context, LinkedList<HexagonView> hexagonViews, int column) {
         super(context);
         this.hexagonViews = hexagonViews;
         this.column = column;
-        for (HexagonView hexagonView:hexagonViews){
+        for (HexagonView hexagonView : hexagonViews) {
             this.addView(hexagonView);
         }
     }
@@ -49,11 +49,12 @@ public class HexagonContainer extends RelativeLayout {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         this.containerWidth = MeasureSpec.getSize(widthMeasureSpec);
         this.containerHeight = MeasureSpec.getSize(heightMeasureSpec);
+//        this.setMeasuredDimension(this.containerWidth,this.containerHeight);
     }
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
-
+        super.onLayout(changed,l,t,r,b);
         int childCount = this.getChildCount();
         float sideLength = this.containerWidth / this.column;
 //        float leftOffset = (sideLength / 2 - (float) (sideLength / 2 * Math.cos(Math.PI / 6))) / 2;
@@ -65,12 +66,13 @@ public class HexagonContainer extends RelativeLayout {
 
         for (int index = 0; index < childCount; index++) {
             HexagonView childAt = (HexagonView) this.getChildAt(index);
+            childAt.measure(MeasureSpec.makeMeasureSpec((int)sideLength,MeasureSpec.EXACTLY), MeasureSpec.makeMeasureSpec((int)sideLength,MeasureSpec.EXACTLY));
             childAt.layout((int) startX, (int) startY, (int) (startX + sideLength), (int) (startY + sideLength));
-
+            System.out.println();
             if (startX + sideLength * 2 > this.containerWidth) {
                 startY += sideLength - topOffset;
 
-                if (((index + 1) / (this.column * 2 - 1)) * (this.column * 2 -1) + this.column == index + 1){
+                if (((index + 1) / (this.column * 2 - 1)) * (this.column * 2 - 1) + this.column == index + 1) {
                     startX = sideLength / 2 - leftOffset;
                 } else {
                     startX = 0;

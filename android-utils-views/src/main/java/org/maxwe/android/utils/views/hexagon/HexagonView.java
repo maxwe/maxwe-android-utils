@@ -5,7 +5,8 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
-import android.widget.RelativeLayout;
+import android.view.View;
+import android.view.ViewGroup;
 
 import java.util.LinkedList;
 
@@ -14,7 +15,7 @@ import java.util.LinkedList;
  * Email: www.dingpengwei@foxmail.com www.dingpegnwei@gmail.com
  * Description: @TODO
  */
-public class HexagonView extends RelativeLayout{
+public class HexagonView extends ViewGroup {
     private float sideLength;
     private Paint paint = new Paint();
 
@@ -33,7 +34,7 @@ public class HexagonView extends RelativeLayout{
         this.initView();
     }
 
-    private void initView(){
+    private void initView() {
         this.setWillNotDraw(false);
         this.paint.setStyle(Paint.Style.STROKE);
     }
@@ -49,12 +50,16 @@ public class HexagonView extends RelativeLayout{
 //        canvas.drawBitmap(BitmapFactory.decodeResource(this.getContext().getResources(), R.drawable.index_01), matrix, this.paint);
     }
 
-
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
-        super.onLayout(changed, l, t, r, b);
         this.sideLength = r - l;
         this.invalidate();
+        int childCount = this.getChildCount();
+        if (childCount > 0){
+            View childAt = this.getChildAt(childCount - 1);
+            childAt.measure(MeasureSpec.makeMeasureSpec((int) sideLength, MeasureSpec.EXACTLY), MeasureSpec.makeMeasureSpec((int) sideLength, MeasureSpec.EXACTLY));
+            childAt.layout(0, 0, (int)sideLength, (int)sideLength);
+        }
     }
 
     @Override
@@ -62,7 +67,7 @@ public class HexagonView extends RelativeLayout{
         int action = event.getAction();
         float eventX = event.getX();
         float eventY = event.getY();
-        if (MotionEvent.ACTION_DOWN == action){
+        if (MotionEvent.ACTION_DOWN == action) {
             LinkedList<Point> hexagonPoints = this.getHexagonPoints();
 //            Point point0 = hexagonPoints.get(0);
 //            Point point3 = hexagonPoints.get(3);
@@ -72,7 +77,7 @@ public class HexagonView extends RelativeLayout{
 //                 */
 //                return super.onTouchEvent(event);
 //            }
-            if (isFallInto(eventX,eventY)){
+            if (isFallInto(eventX, eventY)) {
                 /**
                  * 落入六边形的内接圆中
                  */
@@ -83,13 +88,13 @@ public class HexagonView extends RelativeLayout{
         return super.onTouchEvent(event);
     }
 
-    private boolean isFallInto(float pointX,float pointY){
-        float innerRadius = (float)((this.sideLength / 2) * Math.cos(Math.PI / 6));
+    private boolean isFallInto(float pointX, float pointY) {
+        float innerRadius = (float) ((this.sideLength / 2) * Math.cos(Math.PI / 6));
         float centerX = this.sideLength / 2;
         float centerY = this.sideLength / 2;
 
         float pointDistance = (float) Math.sqrt(Math.pow(Math.abs(centerX - pointX), 2) + Math.pow(Math.abs(centerY - pointY), 2));
-        if (pointDistance < innerRadius){
+        if (pointDistance < innerRadius) {
             return true;
         }
         return false;
