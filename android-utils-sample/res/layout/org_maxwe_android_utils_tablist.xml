@@ -1,25 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<org.maxwe.android.utils.views.tablist.TabListContainer
+<org.maxwe.android.utils.views.tablist.Container
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    <org.maxwe.android.utils.views.tablist.TitleContainer
-            android:id="@+id/org_maxwe_tablist_title_container"
+        android:layout_height="match_parent"
+        android:background="#00FFFF">
+
+    <org.maxwe.android.utils.sample.tablist.TitleView
             android:layout_width="match_parent"
-            android:layout_height="300dp">
-        <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:src="@drawable/tablist_title"/>
-    </org.maxwe.android.utils.views.tablist.TitleContainer>
-    <org.maxwe.android.utils.views.tablist.ContentContainer
-            android:id="@+id/org_maxwe_tablist_content_container"
+            android:layout_height="200dp">
+
+    </org.maxwe.android.utils.sample.tablist.TitleView>
+
+    <org.maxwe.android.utils.sample.tablist.ContentViewPager
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        <!--<ListView-->
-                <!--android:background="#FF00FF"-->
-                <!--android:id="@+id/list"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent"></ListView>-->
-    </org.maxwe.android.utils.views.tablist.ContentContainer>
-</org.maxwe.android.utils.views.tablist.TabListContainer>
+            android:layout_height="match_parent"
+            android:background="#FF00FF">
+    </org.maxwe.android.utils.sample.tablist.ContentViewPager>
+
+</org.maxwe.android.utils.views.tablist.Container>
