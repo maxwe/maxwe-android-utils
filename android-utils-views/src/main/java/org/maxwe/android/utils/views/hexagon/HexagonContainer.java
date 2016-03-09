@@ -33,7 +33,7 @@ public class HexagonContainer extends RelativeLayout {
         for (HexagonView hexagonView : hexagonViews) {
             this.addView(hexagonView);
         }
-//        this.childCount = this.getChildCount();
+        this.childCount = this.getChildCount();
     }
 
     public HexagonContainer(Context context, AttributeSet attrs) {
@@ -75,8 +75,9 @@ public class HexagonContainer extends RelativeLayout {
         /**
          * 总体高度 = 行高 + 余行高 - 高度偏移量的累计值
          */
-        this.containerHeight = this.childCount / (this.column * 2 - 1) * (this.sideLength - this.topOffset) * 2 + ((newLineHeight == 0)?this.topOffset:newLineHeight);
-        this.setMeasuredDimension((int) this.containerWidth, (int) this.containerHeight);
+        this.containerHeight = this.childCount / (this.column * 2 - 1) * (this.sideLength - this.topOffset) * 2 + ((newLineHeight == 0) ? this.topOffset : newLineHeight);
+        this.setMeasuredDimension(widthMeasureSpec, MeasureSpec.makeMeasureSpec((int) this.containerHeight, MeasureSpec.EXACTLY));
+
     }
 
     @Override
