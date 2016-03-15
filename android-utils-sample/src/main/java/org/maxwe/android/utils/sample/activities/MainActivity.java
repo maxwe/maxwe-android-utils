@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import org.maxwe.android.utils.sample.R;
+import org.maxwe.android.utils.sample.editer.EditerActivity;
 import org.maxwe.android.utils.sample.hexagon.HexagonActivity;
 import org.maxwe.android.utils.sample.tablist.TabListActivity;
 
@@ -29,6 +30,9 @@ public class MainActivity extends Activity implements View.OnClickListener{
             this.startActivity(intent);
         }else if (id == R.id.material_design_tablist){
             Intent intent = new Intent(this, TabListActivity.class);
+            this.startActivity(intent);
+        }else if (id == R.id.editer){
+            Intent intent = new Intent(this, EditerActivity.class);
             this.startActivity(intent);
         }
     }
