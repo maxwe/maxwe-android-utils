@@ -14,5 +14,8 @@ public class EditerActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.org_maxwe_android_utils_editer);
+
+
+
     }
 }
