@@ -41,7 +41,7 @@ public interface IDownloader{
     void addDownloaderSelf(IDownloader iDownloader);
 
     void onDownloadStart();
-    void onDownloadProgress(long total,long current);
+    void onDownloadProgress(long total, long current);
     void onDownloadError(HttpException error, String msg);
     void onDownloadFinish(ResponseInfo<File> responseInfo);
     void onCancelled();

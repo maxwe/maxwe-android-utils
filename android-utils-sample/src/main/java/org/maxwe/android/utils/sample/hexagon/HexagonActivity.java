@@ -11,7 +11,6 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.Toast;
 import org.maxwe.android.utils.sample.R;
-import org.maxwe.android.utils.sample.activities.MainActivity;
 import org.maxwe.android.utils.views.hexagon.HexagonContainer;
 import org.maxwe.android.utils.views.hexagon.HexagonView;
 
@@ -59,7 +58,7 @@ public class HexagonActivity extends Activity implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         Toast.makeText(this,"onClick",Toast.LENGTH_LONG).show();
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, HexagonActivity.class);
         this.startActivity(intent);
     }
 }

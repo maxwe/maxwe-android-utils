@@ -30,7 +30,7 @@ public class TitleView extends RelativeLayout implements ITitle {
 
     private void init(){
         ImageView imageView = new ImageView(this.getContext());
-        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+        LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         layoutParams.addRule(CENTER_IN_PARENT);
         imageView.setLayoutParams(layoutParams);
         imageView.setImageResource(R.drawable.ic_launcher);

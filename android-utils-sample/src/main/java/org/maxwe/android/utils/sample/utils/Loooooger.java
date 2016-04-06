@@ -1,4 +1,4 @@
-package org.maxwe.android.epub.sample.utils;
+package org.maxwe.android.utils.sample.utils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
