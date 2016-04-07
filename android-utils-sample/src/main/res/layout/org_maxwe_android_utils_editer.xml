@@ -4,30 +4,15 @@
               android:layout_height="fill_parent"
               android:background="#FFFF00"
               android:orientation="vertical">
+
     <Button android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="xxxxxxxxxxx">
-
-    </Button>
+            android:text="编辑文字不影响其他的展示"/>
 
     <org.maxwe.android.utils.views.editer.EditorContainer
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#FF00FF">
     </org.maxwe.android.utils.views.editer.EditorContainer>
 
-    <!--<ScrollView-->
-            <!--android:id="@+id/test_scroll_view"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_weight="1"-->
-            <!--android:background="#FF00FF">-->
-        <!--<EditText android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="1"/>-->
-    <!--</ScrollView>-->
-
-
-    <!--<org.maxwe.android.utils.views.editer.Editor-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:background="#FF00FF">-->
-    <!--</org.maxwe.android.utils.views.editer.Editor>-->
 </LinearLayout>

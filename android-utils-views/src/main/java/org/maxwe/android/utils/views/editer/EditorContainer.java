@@ -13,7 +13,6 @@ import android.widget.ScrollView;
  * Description: @TODO
  */
 public class EditorContainer extends ScrollView {
-
     public EditorContainer(Context context) {
         super(context);
         this.init();
@@ -42,8 +41,8 @@ public class EditorContainer extends ScrollView {
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         super.onLayout(changed, l, t, r, b);
         View childAt = this.getChildAt(0);
-        ViewGroup.LayoutParams layoutParams = childAt.getLayoutParams();
-        layoutParams.height = b - t;
-        childAt.setLayoutParams(layoutParams);
+        childAt.layout(l,0,r,b - t);
     }
+
+
 }
