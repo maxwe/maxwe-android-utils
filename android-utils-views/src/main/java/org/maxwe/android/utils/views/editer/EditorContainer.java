@@ -5,6 +5,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
 /**
@@ -29,7 +30,11 @@ public class EditorContainer extends ScrollView {
     }
 
     private void init(){
-        this.addView(new EditText(this.getContext()));
+        LinearLayout linearLayout = new LinearLayout(this.getContext());
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
+        linearLayout.addView(new EditText(this.getContext()));
+        linearLayout.addView(new EditText(this.getContext()));
+        this.addView(linearLayout);
     }
 
     @Override
@@ -40,9 +45,8 @@ public class EditorContainer extends ScrollView {
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         super.onLayout(changed, l, t, r, b);
-        View childAt = this.getChildAt(0);
-        childAt.layout(l,0,r,b - t);
+        this.getChildAt(0).layout(0, 0, r - l, b - t);
+        ((ViewGroup)this.getChildAt(0)).getChildAt(0).layout(0, 0, r - l, (b - t) / 2);
+        ((ViewGroup)this.getChildAt(0)).getChildAt(1).layout(0, (b - t) / 2, r - l, b - t);
     }
-
-
 }

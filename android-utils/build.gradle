@@ -1,12 +1,12 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    compileSdkVersion 8
+    buildToolsVersion "19.1.0"
 
     defaultConfig {
-        minSdkVersion 19
-        targetSdkVersion 23
+        minSdkVersion 9
+        targetSdkVersion 9
         versionCode 1
         versionName "1.0"
     }
@@ -16,14 +16,36 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    lintOptions {
+        abortOnError false
+    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.jiechic.library:xUtils:2.6.14'
     compile 'com.google.android.email:activation:1.0'
     compile 'com.google.android.email:additionnal:1.0'
     compile 'com.google.android.email:mail:1.0'
+}
+
+
+apply plugin: 'maven'
+
+group 'org.maxwe.android'
+def artifactId = "android-utils"
+version '1.4'
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: "http://192.168.10.8:8081/nexus/content/repositories/retech") {
+                authentication(userName: System.getenv("MYNEXUSUSERNAME"), password: System.getenv("MYNEXUSPASSWORD"))
+            }
+            pom.version = "$project.version"
+            pom.artifactId = "$artifactId"
+            pom.groupId = "$project.group"
+        }
+    }
 }

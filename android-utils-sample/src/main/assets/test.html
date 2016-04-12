@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body style="background-color:red">
+<input type="file" name="file" accept="image/*" capture="camera" class="fileselect">
+<video id="video"></video>
+<script type="text/javascript">
+    var video = document.getElementById("video");
+    navigator.webkitGetUserMedia({video:true}, function (stream) {
+                        video.src = window.webkitURL.createObjectURL(stream);
+    }, function (error) { alert(error); });
+</script>
+</body>
+</html>

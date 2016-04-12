@@ -3,16 +3,98 @@
               android:layout_width="match_parent"
               android:layout_height="fill_parent"
               android:background="#FFFF00"
-              android:orientation="vertical">
+              android:orientation="horizontal">
 
-    <Button android:layout_width="match_parent"
+    <RelativeLayout
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:background="#FF0000">
+        <Button
+            android:id="@+id/top"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="编辑文字不影响其他的展示"/>
+            android:layout_alignParentTop="true"
+            android:text="Top Mark"/>
+        <Button
+            android:id="@+id/holder1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Holder Mark 1"
+            android:layout_below="@id/top"/>
+        <Button
+            android:id="@+id/holder2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Holder Mark 2"
+            android:layout_below="@id/holder1"/>
+        <Button
+            android:id="@+id/holder3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Holder Mark 3"
+            android:layout_below="@id/holder2"/>
+        <Button
+            android:id="@+id/holder4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Holder Mark 4"
+            android:layout_below="@id/holder3"/>
+        <Button
+            android:id="@+id/holder5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Holder Mark 5"
+            android:layout_below="@id/holder4"/>
+        <Button
+            android:id="@+id/holder6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Holder Mark 6"
+             android:layout_below="@id/holder5"/>
+        <Button
+            android:id="@+id/holder7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Holder Mark 7"
+            android:layout_below="@id/holder6"/>
+
+        <Button
+            android:id="@+id/holder8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Holder Mark 8"
+            android:layout_below="@id/holder7"/>
+
+
+        <Button
+            android:id="@+id/holder9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Holder Mark 9"
+            android:layout_below="@id/holder8"/>
+
+
+        <Button
+            android:id="@+id/holder10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Holder Mark 10"
+            android:layout_below="@id/holder9"/>
+
+        <Button
+            android:id="@+id/bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:text="Bottom Mark"/>
+    </RelativeLayout>
 
     <org.maxwe.android.utils.views.editer.EditorContainer
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FF00FF">
+        android:background="#FF00FF"
+        android:layout_weight="1">
+
     </org.maxwe.android.utils.views.editer.EditorContainer>
 
 </LinearLayout>

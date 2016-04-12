@@ -12,8 +12,10 @@ import android.view.MenuItem;
 
 import org.maxwe.android.utils.sample.editer.EditerActivity;
 import org.maxwe.android.utils.sample.hexagon.HexagonActivity;
+import org.maxwe.android.utils.sample.progress.ProgressActivity;
 import org.maxwe.android.utils.sample.tablist.TabListActivity;
 import org.maxwe.android.utils.sample.webview.MyWebViewActivity;
+import org.maxwe.android.utils.sample.webview.WebViewCameraActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -46,8 +48,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else if (id == R.id.editer) {
             Intent intent = new Intent(this, EditerActivity.class);
             this.startActivity(intent);
-        } else if (id == R.id.webview) {
+        } else if (id == R.id.WebView_MD) {
             Intent intent = new Intent(this, MyWebViewActivity.class);
+            this.startActivity(intent);
+        } else if (id == R.id.WebView_Camera) {
+            Intent intent = new Intent(this, WebViewCameraActivity.class);
+            this.startActivity(intent);
+        } else if (id == R.id.progress) {
+            Intent intent = new Intent(this, ProgressActivity.class);
             this.startActivity(intent);
         }
     }
