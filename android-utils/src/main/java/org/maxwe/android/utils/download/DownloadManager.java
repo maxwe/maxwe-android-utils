@@ -8,6 +8,7 @@ import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 
 import java.io.File;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.Map;
@@ -92,7 +93,7 @@ public class DownloadManager {
     /**
      * 等待下载的图书的集合
      */
-    private static final LinkedList<IDownloader> waitForDownloadBooks = new LinkedList<IDownloader>();
+    private static final LinkedHashMap<String,IDownloader> waitForDownloadBooks = new LinkedHashMap<String, IDownloader>();
 
     /**
      * 添加排队的下载者
@@ -101,12 +102,7 @@ public class DownloadManager {
      */
     public synchronized void addDownloader(IDownloader... downloaders) {
         for (IDownloader downloader : downloaders) {
-            if (!waitForDownloadBooks.contains(downloader) && !downloadingBooks.containsKey(downloader.getDownloaderId())) {
-                waitForDownloadBooks.add(downloader);
-            } else if (downloadingBooks.containsKey(downloader.getDownloaderId())) {
-                DownloadUnit downloadUnit = downloadingBooks.get(downloader.getDownloaderId());
-                downloadUnit.getDownloader().addDownloaderSelf(downloader);
-            }
+            this.addDownloader(downloader);
         }
         this.addDownloaderToScheduled();
     }
@@ -118,14 +114,24 @@ public class DownloadManager {
      */
     public synchronized void addDownloader(LinkedList<IDownloader> downloaders) {
         for (IDownloader downloader : downloaders) {
-            if (!waitForDownloadBooks.contains(downloader) && !downloadingBooks.containsKey(downloader.getDownloaderId())) {
-                waitForDownloadBooks.add(downloader);
-            } else if (downloadingBooks.containsKey(downloader.getDownloaderId())) {
-                DownloadUnit downloadUnit = downloadingBooks.get(downloader.getDownloaderId());
-                downloadUnit.getDownloader().addDownloaderSelf(downloader);
-            }
+            this.addDownloader(downloader);
         }
         this.addDownloaderToScheduled();
+    }
+
+    /**
+     * 判断使用何种逻辑添加排队的下载者
+     * @param downloader
+     */
+    private void addDownloader(IDownloader downloader){
+        if (!waitForDownloadBooks.containsKey(downloader.getDownloaderId()) && !downloadingBooks.containsKey(downloader.getDownloaderId())) {
+            waitForDownloadBooks.put(downloader.getDownloaderId(),downloader);
+        } else if (waitForDownloadBooks.containsKey(downloader.getDownloaderId())){
+            waitForDownloadBooks.get(downloader.getDownloaderId()).addDownloaderSelf(downloader);
+        }else if (downloadingBooks.containsKey(downloader.getDownloaderId())) {
+            DownloadUnit downloadUnit = downloadingBooks.get(downloader.getDownloaderId());
+            downloadUnit.getDownloader().addDownloaderSelf(downloader);
+        }
     }
 
     /**
@@ -139,8 +145,8 @@ public class DownloadManager {
             if (downloadingBooks.containsKey(id)) {
                 DownloadUnit downloadUnit = downloadingBooks.remove(id);
                 downloadUnit.getHttpHandler().cancel();
-            } else if (waitForDownloadBooks.contains(downloader)) {
-                waitForDownloadBooks.remove(downloader);
+            } else if (waitForDownloadBooks.containsKey(downloader.getDownloaderId())) {
+                waitForDownloadBooks.remove(downloader.getDownloaderId());
             }
         }
         this.addDownloaderToScheduled();
@@ -157,8 +163,8 @@ public class DownloadManager {
             if (downloadingBooks.containsKey(id)) {
                 DownloadUnit downloadUnit = downloadingBooks.remove(id);
                 downloadUnit.getHttpHandler().cancel();
-            } else if (waitForDownloadBooks.contains(downloader)) {
-                waitForDownloadBooks.remove(downloader);
+            } else if (waitForDownloadBooks.containsKey(downloader.getDownloaderId())) {
+                waitForDownloadBooks.remove(downloader.getDownloaderId());
             }
         }
         this.addDownloaderToScheduled();
@@ -186,7 +192,14 @@ public class DownloadManager {
             /**
              * 如果当前正在下载的数量小于最大下载数量，获取待下载队列第一个下载
              */
-            IDownloader downloader = this.waitForDownloadBooks.poll();
+            IDownloader downloader = null;
+            Iterator<String> iterator = this.waitForDownloadBooks.keySet().iterator();
+            if (iterator.hasNext()){
+                String downloaderKey = iterator.next();
+                downloader = this.waitForDownloadBooks.get(downloaderKey);
+                this.waitForDownloadBooks.remove(downloaderKey);
+            }
+
             if (downloader != null) {
                 /**
                  * 待下载队列不为空就添加到下载队列

@@ -5,7 +5,7 @@ android {
     buildToolsVersion "23.0.2"
 
     defaultConfig {
-        minSdkVersion 19
+        minSdkVersion 17
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -34,12 +34,17 @@ version '1.1.6'
 uploadArchives {
     repositories {
         mavenDeployer {
-            repository(url: "http://192.168.10.8:8081/nexus/content/repositories/retech") {
-                authentication(userName: System.getenv("MYNEXUSUSERNAME"), password: System.getenv("MYNEXUSPASSWORD"))
-            }
             pom.version = "$project.version"
             pom.artifactId = "$artifactId"
             pom.groupId = "$project.group"
+
+            if (project.hasProperty('local')) {
+                repository url: 'file://' + new File(System.getProperty('user.home'), '.m2/repository').absolutePath
+            } else if (project.hasProperty('retech')) {
+                repository(url: "http://192.168.10.8:8081/nexus/content/repositories/retech") {
+                    authentication(userName: System.getenv("MYNEXUSUSERNAME"), password: System.getenv("MYNEXUSPASSWORD"))
+                }
+            }
         }
     }
 }
