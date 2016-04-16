@@ -56,6 +56,21 @@
                 android:onClick="onClick"
                 android:text="WebView_MD" />
 
+
+            <Button
+                android:id="@+id/WebView_Common"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onClick"
+                android:text="WebView_Common" />
+
+            <Button
+                android:id="@+id/Local_Camera"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onClick"
+                android:text="Local_Camera" />
+
             <Button
                 android:id="@+id/WebView_Camera"
                 android:layout_width="match_parent"

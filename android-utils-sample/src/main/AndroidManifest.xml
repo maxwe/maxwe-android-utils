@@ -25,7 +25,10 @@
         <activity android:name=".editer.EditerActivity" android:windowSoftInputMode="adjustResize|adjustPan" android:theme="@android:style/Theme.Light"></activity>
         <activity android:name=".webview.MyWebViewActivity" android:theme="@android:style/Theme.Light"></activity>
         <activity android:name=".webview.WebViewCameraActivity" android:theme="@android:style/Theme.Light"></activity>
+        <activity android:name=".webview.CommonWebViewActivity"   android:theme="@android:style/Theme.Holo.NoActionBar"></activity>
         <activity android:name=".progress.ProgressActivity" android:theme="@android:style/Theme.Light" ></activity>
+        <activity android:name=".camera.LocalCameraActivity" android:theme="@android:style/Theme.Black.NoTitleBar" ></activity>
+
     </application>
 
 </manifest>

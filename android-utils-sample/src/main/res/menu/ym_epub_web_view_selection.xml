@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/ym_epub_id_menu_selection_copy"
+        android:onClick="onContextualMenuItemClicked"
+        android:title="FUN1"></item>
+    <item
+        android:id="@+id/ym_epub_id_menu_selection_digest"
+        android:onClick="onContextualMenuItemClicked"
+        android:title="FUN2"></item>
+    <item
+        android:id="@+id/ym_epub_id_menu_selection_note"
+        android:onClick="onContextualMenuItemClicked"
+        android:title="FUN3"></item>
+    <item
+        android:id="@+id/ym_epub_id_menu_selection_share"
+        android:onClick="onContextualMenuItemClicked"
+        android:title="FUN4"
+        android:visible="false">
+
+    </item>
+</menu>

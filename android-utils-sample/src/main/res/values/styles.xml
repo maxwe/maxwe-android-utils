@@ -42,4 +42,11 @@
         <item name="android:background">@drawable/index_01</item>
     </style>
 
+    <style name="xxxxxxxx">
+        <item name="android:windowActionModeOverlay">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowActionBar">true</item>
+    </style>
+
 </resources>

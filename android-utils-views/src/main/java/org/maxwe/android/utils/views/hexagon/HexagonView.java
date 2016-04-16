@@ -102,7 +102,7 @@ public class HexagonView extends ViewGroup {
 
 
     private LinkedList<Point> getHexagonPoints() {
-        LinkedList<Point> points = new LinkedList<>();
+        LinkedList<Point> points = new LinkedList<Point>();
         float sideLength = this.sideLength;
         float radius = sideLength / 2;
         float halfRadius = radius / 2;

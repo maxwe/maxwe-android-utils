@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/root">
+
+
+    <org.maxwe.android.utils.views.camera.CameraFilterView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!--<org.maxwe.android.utils.views.camera.CameraFilterViewerView-->
+        <!--android:id="@+id/camera"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"/>-->
+
+
+    <!--<Button-->
+        <!--android:layout_width="80dp"-->
+        <!--android:layout_height="80dp"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:background="#50FF00FF"-->
+        <!--android:layout_marginBottom="80dp"-->
+        <!--android:text="Click"/>-->
+
+</RelativeLayout>
