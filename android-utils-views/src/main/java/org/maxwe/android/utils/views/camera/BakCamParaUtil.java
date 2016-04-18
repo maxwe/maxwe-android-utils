@@ -8,16 +8,16 @@ import android.hardware.Camera;
 import android.hardware.Camera.Size;
 import android.util.Log;
 
-public class CamParaUtil {
+public class BakCamParaUtil {
 	private static final String TAG = "yanzi";
 	private CameraSizeComparator sizeComparator = new CameraSizeComparator();
-	private static CamParaUtil myCamPara = null;
-	private CamParaUtil(){
+	private static BakCamParaUtil myCamPara = null;
+	private BakCamParaUtil(){
 
 	}
-	public static CamParaUtil getInstance(){
+	public static BakCamParaUtil getInstance(){
 		if(myCamPara == null){
-			myCamPara = new CamParaUtil();
+			myCamPara = new BakCamParaUtil();
 			return myCamPara;
 		}
 		else{

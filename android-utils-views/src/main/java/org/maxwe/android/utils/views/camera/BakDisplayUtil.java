@@ -5,8 +5,8 @@ import android.graphics.Point;
 import android.util.DisplayMetrics;
 import android.util.Log;
 
-public class DisplayUtil {
-	private static final String TAG = "DisplayUtil";
+public class BakDisplayUtil {
+	private static final String TAG = "BakDisplayUtil";
 	/**
 	 * dipתpx
 	 * @param context

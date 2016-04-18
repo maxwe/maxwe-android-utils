@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.ImageFormat;
 import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -48,7 +49,6 @@ public class GameDisplay extends SurfaceView implements SurfaceHolder.Callback, 
         this.screenWidth=screenWidth;
         this.screenHeight=screenHeight;
     }
-
 
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width,int height) {
@@ -111,12 +111,14 @@ public class GameDisplay extends SurfaceView implements SurfaceHolder.Callback, 
         }
         synchronized (gHolder)
         {
+            long time = System.currentTimeMillis();
             int w = camera.getParameters().getPreviewSize().width;
             int h = camera.getParameters().getPreviewSize().height;
             int[] rgb = decodeYUV420SP(data, w, h);
             Canvas canvas = this.getHolder().lockCanvas();
             canvas.drawBitmap(rgb, 0, w, 0, 0, w, h, false, null);
             this.getHolder().unlockCanvasAndPost(canvas);
+            System.out.println("========================== last = " + (System.currentTimeMillis() - time));
         }
     }
 

@@ -4,21 +4,24 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 import java.nio.ShortBuffer;
+import java.util.LinkedList;
 
 import android.opengl.GLES11Ext;
 import android.opengl.GLES20;
 import android.opengl.Matrix;
+import android.util.Log;
 
 public class DirectDrawer {
-	private final String vertexShaderCode =
+    private final String vertexShaderCode =
             "attribute vec4 vPosition;" +
-            "attribute vec2 inputTextureCoordinate;" +
-            "varying vec2 textureCoordinate;" +
-            "void main()" +
-            "{"+
-                "gl_Position = vPosition;"+
-                "textureCoordinate = inputTextureCoordinate;" +
-            "}";
+                    "attribute vec2 inputTextureCoordinate;" +
+                    "varying vec2 textureCoordinate;" +
+                    "void main()" +
+                    "{" +
+                    "gl_Position = vPosition;" +
+                    "textureCoordinate = inputTextureCoordinate;" +
+                    "}";
+
 
     private final String fragmentShaderCode =
             "#extension GL_OES_EGL_image_external : require\n"+
@@ -28,6 +31,67 @@ public class DirectDrawer {
             "void main() {" +
             "  gl_FragColor = texture2D( s_texture, textureCoordinate );\n" +
             "}";
+//
+//
+//
+//    public static final String VERTEX_SHADER = "" +
+//            "attribute vec4 position;\n" +
+//            "attribute vec4 inputTextureCoordinate;\n" +
+//            " \n" +
+//            "varying vec2 textureCoordinate;\n" +
+//            " \n" +
+//            "void main()\n" +
+//            "{\n" +
+//            "    gl_Position = position;\n" +
+//            "    textureCoordinate = inputTextureCoordinate.xy;\n" +
+//            "}";
+//
+//    private final String fragmentShaderCode = "varying highp vec2 textureCoordinate;\n" +
+//            "precision highp float;\n" +
+//            "\n" +
+//            "uniform sampler2D inputImageTexture;\n" +
+//            "uniform vec2 singleStepOffset; \n" +
+//            "uniform float strength;\n" +
+//            "\n" +
+//            "const highp vec3 W = vec3(0.299,0.587,0.114);\n" +
+//            "\n" +
+//            "\n" +
+//            "void main()\n" +
+//            "{ \n" +
+//            "\tfloat threshold = 0.0;\n" +
+//            "\t//pic1\n" +
+//            "\tvec4 oralColor = texture2D(inputImageTexture, textureCoordinate);\n" +
+//            "\t\n" +
+//            "\t//pic2\n" +
+//            "\tvec3 maxValue = vec3(0.,0.,0.);\n" +
+//            "\t\n" +
+//            "\tfor(int i = -2; i<=2; i++)\n" +
+//            "\t{\n" +
+//            "\t\tfor(int j = -2; j<=2; j++)\n" +
+//            "\t\t{\n" +
+//            "\t\t\tvec4 tempColor = texture2D(inputImageTexture, textureCoordinate+singleStepOffset*vec2(i,j));\n" +
+//            "\t\t\tmaxValue.r = max(maxValue.r,tempColor.r);\n" +
+//            "\t\t\tmaxValue.g = max(maxValue.g,tempColor.g);\n" +
+//            "\t\t\tmaxValue.b = max(maxValue.b,tempColor.b);\n" +
+//            "\t\t\tthreshold += dot(tempColor.rgb, W); \n" +
+//            "\t\t}\n" +
+//            "\t}\n" +
+//            "\t//pic3\n" +
+//            "\tfloat gray1 = dot(oralColor.rgb, W);\n" +
+//            "\t\n" +
+//            "\t//pic4\n" +
+//            "\tfloat gray2 = dot(maxValue, W);\n" +
+//            "\t\n" +
+//            "\t//pic5\n" +
+//            "\tfloat contour = gray1 / gray2;\n" +
+//            "\t\n" +
+//            "\tthreshold = threshold / 25.;\n" +
+//            "\tfloat alpha = max(strength,gray1>threshold?1.0:(gray1/threshold));\n" +
+//            "\t\n" +
+//            "\tfloat result = contour * alpha + (1.0-alpha)*gray1;\n" +
+//            "\t\n" +
+//            "\tgl_FragColor = vec4(vec3(result,result,result), oralColor.w);\n" +
+//            "} \n";
 
     private FloatBuffer vertexBuffer, textureVerticesBuffer;
     private ShortBuffer drawListBuffer;
@@ -35,7 +99,8 @@ public class DirectDrawer {
     private int mPositionHandle;
     private int mTextureCoordHandle;
 
-    private short drawOrder[] = { 0, 1, 2, 0, 2, 3 }; // order to draw vertices
+
+    private short drawOrder[] = {0, 1, 2, 0, 2, 3}; // order to draw vertices
 
     // number of coordinates per vertex in this array
     private static final int COORDS_PER_VERTEX = 2;
@@ -43,23 +108,30 @@ public class DirectDrawer {
     private final int vertexStride = COORDS_PER_VERTEX * 4; // 4 bytes per vertex
 
     static float squareCoords[] = {
-       -1.0f,  1.0f,
-       -1.0f, -1.0f,
-        1.0f, -1.0f,
-        1.0f,  1.0f,
+            -1.0f, 1.0f,
+            -1.0f, -1.0f,
+            1.0f, -1.0f,
+            1.0f, 1.0f,
     };
 
     static float textureVertices[] = {
-        0.0f, 1.0f,
-        1.0f, 1.0f,
-        1.0f, 0.0f,
-        0.0f, 0.0f,
+            0.0f, 1.0f,
+            1.0f, 1.0f,
+            1.0f, 0.0f,
+            0.0f, 0.0f,
     };
+
+//    static float textureVertices[] = {
+//            0.0f, 1.0f,
+//            1.0f, 1.0f,
+//            0.0f, 0.0f,
+//            1.0f, 0.0f,
+//    };
 
     private int texture;
 
-    public DirectDrawer(int texture)
-    {
+
+    public DirectDrawer(int texture) {
         this.texture = texture;
         // initialize vertex byte buffer for shape coordinates
         ByteBuffer bb = ByteBuffer.allocateDirect(squareCoords.length * 4);
@@ -87,7 +159,7 @@ public class DirectDrawer {
         mProgram = GLES20.glCreateProgram();             // create empty OpenGL ES Program
         GLES20.glAttachShader(mProgram, vertexShader);   // add the vertex shader to program
         GLES20.glAttachShader(mProgram, fragmentShader); // add the fragment shader to program
-        GLES20.glLinkProgram(mProgram);                  // creates OpenGL ES program executables
+        GLES20.glLinkProgram(mProgram);
     }
 
     public void draw(float[] mtx)
@@ -108,11 +180,11 @@ public class DirectDrawer {
 
         mTextureCoordHandle = GLES20.glGetAttribLocation(mProgram, "inputTextureCoordinate");
         GLES20.glEnableVertexAttribArray(mTextureCoordHandle);
-        
+
 //        textureVerticesBuffer.clear();
 //        textureVerticesBuffer.put( transformTextureCoordinates( textureVertices, mtx ));
 //        textureVerticesBuffer.position(0);
-        
+
         GLES20.glVertexAttribPointer(mTextureCoordHandle, COORDS_PER_VERTEX, GLES20.GL_FLOAT, false, vertexStride, textureVerticesBuffer);
         GLES20.glDrawElements(GLES20.GL_TRIANGLES, drawOrder.length, GLES20.GL_UNSIGNED_SHORT, drawListBuffer);
 
@@ -120,7 +192,6 @@ public class DirectDrawer {
         GLES20.glDisableVertexAttribArray(mPositionHandle);
         GLES20.glDisableVertexAttribArray(mTextureCoordHandle);
     }
-    
     private  int loadShader(int type, String shaderCode){
 
         // create a vertex shader type (GLES20.GL_VERTEX_SHADER)
@@ -134,16 +205,17 @@ public class DirectDrawer {
         return shader;
     }
     private float[] transformTextureCoordinates( float[] coords, float[] matrix)
-    {          
-       float[] result = new float[ coords.length ];        
-       float[] vt = new float[4];      
+    {
+        float[] result = new float[ coords.length ];
+        float[] vt = new float[4];
 
-       for ( int i = 0 ; i < coords.length ; i += 2 ) {
-           float[] v = { coords[i], coords[i+1], 0 , 1  };
-           Matrix.multiplyMV(vt, 0, matrix, 0, v, 0);
-           result[i] = vt[0];
-           result[i+1] = vt[1];
-       }
-       return result;
+        for ( int i = 0 ; i < coords.length ; i += 2 ) {
+            float[] v = { coords[i], coords[i+1], 0 , 1  };
+            Matrix.multiplyMV(vt, 0, matrix, 0, v, 0);
+            result[i] = vt[0];
+            result[i+1] = vt[1];
+        }
+        return result;
     }
+
 }

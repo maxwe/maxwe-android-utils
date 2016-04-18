@@ -22,7 +22,8 @@ public class LocalCameraActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.org_maxwe_android_utils_camera);
-//
+
+//        这个实现方式是SurfaceView + SurfaceTexture实现，DecodeToImage算法比较慢，耗时200ms左右
 //        DisplayMetrics dm = getResources().getDisplayMetrics();
 //        screenWidth = dm.widthPixels;
 //        screenHeight = dm.heightPixels;

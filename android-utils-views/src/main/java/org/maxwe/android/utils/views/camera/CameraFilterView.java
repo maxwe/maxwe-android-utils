@@ -16,7 +16,6 @@ import javax.microedition.khronos.opengles.GL10;
  * Description: @TODO
  */
 public class CameraFilterView extends GLSurfaceView implements GLSurfaceView.Renderer, SurfaceTexture.OnFrameAvailableListener {
-    private CameraEngine cameraEngine = new CameraEngine();
     private SurfaceTexture surfaceTexture;
     private DirectDrawer directDrawer;
 
@@ -42,7 +41,7 @@ public class CameraFilterView extends GLSurfaceView implements GLSurfaceView.Ren
         this.surfaceTexture = new SurfaceTexture(textureID);
         this.surfaceTexture.setOnFrameAvailableListener(this);
         this.directDrawer = new DirectDrawer(textureID);
-        CameraInterface.getInstance().doOpenCamera(null);
+        CameraEngine.getInstance().onSurfaceCreated();
         System.out.println("=====onSurfaceCreated=====");
     }
 
@@ -50,8 +49,8 @@ public class CameraFilterView extends GLSurfaceView implements GLSurfaceView.Ren
     public void onSurfaceChanged(GL10 gl, int width, int height) {
         System.out.println("=====onSurfaceChanged=====");
         GLES20.glViewport(0, 0, width, height);
-        if(!CameraInterface.getInstance().isPreviewing()){
-            CameraInterface.getInstance().doStartPreview(this.surfaceTexture, 1.33f);
+        if(!CameraEngine.getInstance().isPreviewing()){
+            CameraEngine.getInstance().getInstance().startPreview(this.surfaceTexture);
         }
     }
 
@@ -64,7 +63,7 @@ public class CameraFilterView extends GLSurfaceView implements GLSurfaceView.Ren
         this.surfaceTexture.updateTexImage();
         float[] mtx = new float[16];
         this.surfaceTexture.getTransformMatrix(mtx);
-        this.directDrawer.draw(mtx);
+        this.directDrawer.draw(null);
     }
 
     @Override
@@ -73,15 +72,15 @@ public class CameraFilterView extends GLSurfaceView implements GLSurfaceView.Ren
         this.requestRender();
     }
 
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        CameraEngine.getInstance().onSurfaceDestroyed();
+    }
 
     @Override
     public void onPause() {
         super.onPause();
-        CameraInterface.getInstance().doStopCamera();
-    }
-
-    public SurfaceTexture _getSurfaceTexture(){
-        return this.surfaceTexture;
     }
 
     private int createTextureID() {

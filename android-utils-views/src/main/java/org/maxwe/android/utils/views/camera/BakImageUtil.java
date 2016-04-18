@@ -3,7 +3,7 @@ package org.maxwe.android.utils.views.camera;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
 
-public class ImageUtil {
+public class BakImageUtil {
 	/**
 	 * ��תBitmap
 	 * @param b
