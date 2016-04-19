@@ -1,9 +1,13 @@
 package org.maxwe.android.utils.views.webview;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.view.ActionMode;
 import android.view.ContextMenu;
+import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.webkit.WebView;
 
 /**
@@ -14,17 +18,17 @@ import android.webkit.WebView;
 public class CommonWebView extends WebView {
 
     public CommonWebView(Context context) {
-        super(context);
+        super(context.getApplicationContext());
         this.init();
     }
 
     public CommonWebView(Context context, AttributeSet attrs) {
-        super(context, attrs);
+        super(context.getApplicationContext(), attrs);
         this.init();
     }
 
     public CommonWebView(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
+        super(context.getApplicationContext(), attrs, defStyle);
         this.init();
     }
 
@@ -33,39 +37,60 @@ public class CommonWebView extends WebView {
     }
 
     @Override
-    protected void onCreateContextMenu(ContextMenu menu) {
-        super.onCreateContextMenu(menu);
+    public ActionMode startActionMode(ActionMode.Callback callback) {
+        CustomizedSelectActionModeCallback customizedSelectActionModeCallback = new CustomizedSelectActionModeCallback(
+                callback);
+        return super.startActionMode(customizedSelectActionModeCallback);
+    }
 
-        HitTestResult result = getHitTestResult();
 
-        MenuItem.OnMenuItemClickListener handler = new MenuItem.OnMenuItemClickListener() {
-            public boolean onMenuItemClick(MenuItem item) {
-                return true;
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        return super.onTouchEvent(event);
+    }
+
+    public class CustomizedSelectActionModeCallback implements ActionMode.Callback {
+        private ActionMode.Callback callback;
+
+
+        public CustomizedSelectActionModeCallback(ActionMode.Callback callback) {
+            this.callback = callback;
+        }
+
+
+        @Override
+        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+            return callback.onCreateActionMode(mode, menu);
+        }
+
+
+        @Override
+        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+            return callback.onPrepareActionMode(mode, menu);
+        }
+
+
+
+        @Override
+        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+            if (item == null || TextUtils.isEmpty(item.getTitle())) {
+                return callback.onActionItemClicked(mode, item);
             }
-        };
+            if (!item.getTitle().toString().contains("搜索")
+                    && !item.getTitle().toString().contains("search")) {
+                return callback.onActionItemClicked(mode, item);
+            }
+            loadUrl("javascript:window.search.show(window.getSelection().toString());");
+            clearFocus();
+            return true;
+        }
 
-        menu.setHeaderTitle(result.getExtra());
-        menu.addSubMenu(0, 0, 0, "Save Image");
-        menu.addSubMenu(0, 1, 1, "View Image");
 
-        menu.setQwertyMode(false);
-
-
-        if (result.getType() == HitTestResult.IMAGE_TYPE ||
-                result.getType() == HitTestResult.SRC_IMAGE_ANCHOR_TYPE) {
-            // Menu options for an image.
-            //set the header title to the image url
-            menu.setHeaderTitle(result.getExtra());
-            menu.add(0, 0, 0, "Save Image").setOnMenuItemClickListener(handler);
-            menu.add(0, 1, 1, "View Image").setOnMenuItemClickListener(handler);
-        } else if (result.getType() == HitTestResult.ANCHOR_TYPE ||
-                result.getType() == HitTestResult.SRC_ANCHOR_TYPE) {
-            // Menu options for a hyperlink.
-            //set the header title to the link url
-            menu.setHeaderTitle(result.getExtra());
-            menu.add(0, 0, 0, "Save Link").setOnMenuItemClickListener(handler);
-            menu.add(0, 1, 1, "Share Link").setOnMenuItemClickListener(handler);
+        @Override
+        public void onDestroyActionMode(ActionMode mode) {
+            callback.onDestroyActionMode(mode);
         }
     }
+
 
 }

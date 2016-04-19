@@ -6,6 +6,7 @@
 
 
     <org.maxwe.android.utils.views.camera.CameraFilterView
+        android:id="@+id/camera_filter_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
