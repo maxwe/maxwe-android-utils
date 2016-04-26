@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.SurfaceTexture;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
+import android.opengl.Matrix;
 import android.util.AttributeSet;
 
 import javax.microedition.khronos.egl.EGLConfig;
@@ -31,18 +32,6 @@ public class CameraFilterView extends GLSurfaceView implements GLSurfaceView.Ren
         this.setRenderMode(RENDERMODE_WHEN_DIRTY);
     }
 
-
-//    @Override
-//    public void onSurfaceCreated(GL10 gl, EGLConfig config) {
-//    }
-//    @Override
-//    public void onSurfaceChanged(GL10 gl, int width, int height) {
-//    }
-//    @Override
-//    public void onDrawFrame(GL10 gl) {
-//    }
-
-
     private Triangle mTriangle;
     @Override
     public void onFrameAvailable(SurfaceTexture surfaceTexture) {
@@ -56,17 +45,32 @@ public class CameraFilterView extends GLSurfaceView implements GLSurfaceView.Ren
         this.mTriangle = new Triangle();
     }
 
+
+    // mMVPMatrix is an abbreviation for "Model View Projection Matrix"
+    private final float[] mMVPMatrix = new float[16];
+    private final float[] mProjectionMatrix = new float[16];
+    private final float[] mViewMatrix = new float[16];
+
     @Override
     public void onSurfaceChanged(GL10 gl, int width, int height) {
         GLES20.glViewport(0, 0, width, height);
+        float ratio = (float) width / height;
+
+        // this projection matrix is applied to object coordinates
+        // in the onDrawFrame() method
+        Matrix.frustumM(mProjectionMatrix, 0, -ratio, ratio, -1, 1, 3, 7);
     }
 
 
     @Override
     public void onDrawFrame(GL10 gl) {
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
-        mTriangle.draw();
-
+        // Set the camera position (View matrix)
+//        Matrix.setLookAtM(mViewMatrix, 0, 0, 0, -3, 0f, 0f, 0f, 0f, 1.0f, 0.0f);
+        Matrix.setLookAtM(mViewMatrix, 0, 0, 0, 3.0f, 0f, 0f, 0f, 0f, 0f, 0.0f);
+        // Calculate the projection and view transformation
+        Matrix.multiplyMM(mMVPMatrix, 0, mProjectionMatrix, 0, mViewMatrix, 0);
+        mTriangle.draw(mMVPMatrix);
     }
 
     @Override
