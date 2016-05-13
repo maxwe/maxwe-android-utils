@@ -15,9 +15,11 @@ import org.maxwe.android.utils.sample.editer.EditerActivity;
 import org.maxwe.android.utils.sample.hexagon.HexagonActivity;
 import org.maxwe.android.utils.sample.progress.ProgressActivity;
 import org.maxwe.android.utils.sample.tablist.TabListActivity;
+import org.maxwe.android.utils.sample.webview.BTAndroidWebViewSelectionActivity;
 import org.maxwe.android.utils.sample.webview.CommonWebViewActivity;
 import org.maxwe.android.utils.sample.webview.MyWebViewActivity;
 import org.maxwe.android.utils.sample.webview.WebViewCameraActivity;
+import org.maxwe.android.utils.views.webview.CommonWebView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -51,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Intent intent = new Intent(this, EditerActivity.class);
             this.startActivity(intent);
         } else if (id == R.id.WebView_Common) {
+//            Intent intent = new Intent(this, BTAndroidWebViewSelectionActivity.class);
             Intent intent = new Intent(this, CommonWebViewActivity.class);
             this.startActivity(intent);
         } else if (id == R.id.WebView_MD) {

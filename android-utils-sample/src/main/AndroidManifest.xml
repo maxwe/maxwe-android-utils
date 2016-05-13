@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".camera.LocalCameraActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -30,8 +30,8 @@
         <activity android:name=".webview.WebViewCameraActivity" android:theme="@android:style/Theme.Light"></activity>
         <activity android:name=".webview.CommonWebViewActivity"   android:theme="@android:style/Theme.Holo.NoActionBar"></activity>
         <activity android:name=".progress.ProgressActivity" android:theme="@android:style/Theme.Light" ></activity>
-        <!--<activity android:name=".camera.LocalCameraActivity" android:theme="@android:style/Theme.Black.NoTitleBar" ></activity>-->
-
+        <activity android:name=".camera.LocalCameraActivity" android:theme="@android:style/Theme.Black.NoTitleBar" ></activity>
+        <activity android:name=".webview.BTAndroidWebViewSelectionActivity"></activity>
     </application>
 
 </manifest>

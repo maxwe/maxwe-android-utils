@@ -1,14 +1,13 @@
 package org.maxwe.android.utils.views.webview;
 
 import android.content.Context;
-import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.ActionMode;
-import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.webkit.WebView;
+
 
 /**
  * Created by Pengwei Ding on 2016-04-15 16:26.
@@ -16,7 +15,6 @@ import android.webkit.WebView;
  * Description: @TODO
  */
 public class CommonWebView extends WebView {
-
     public CommonWebView(Context context) {
         super(context.getApplicationContext());
         this.init();
@@ -38,9 +36,7 @@ public class CommonWebView extends WebView {
 
     @Override
     public ActionMode startActionMode(ActionMode.Callback callback) {
-        CustomizedSelectActionModeCallback customizedSelectActionModeCallback = new CustomizedSelectActionModeCallback(
-                callback);
-        return super.startActionMode(customizedSelectActionModeCallback);
+        return null;
     }
 
 
@@ -52,17 +48,15 @@ public class CommonWebView extends WebView {
     public class CustomizedSelectActionModeCallback implements ActionMode.Callback {
         private ActionMode.Callback callback;
 
-
         public CustomizedSelectActionModeCallback(ActionMode.Callback callback) {
             this.callback = callback;
         }
 
-
         @Override
         public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+            System.out.println();
             return callback.onCreateActionMode(mode, menu);
         }
-
 
         @Override
         public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
@@ -73,15 +67,6 @@ public class CommonWebView extends WebView {
 
         @Override
         public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-            if (item == null || TextUtils.isEmpty(item.getTitle())) {
-                return callback.onActionItemClicked(mode, item);
-            }
-            if (!item.getTitle().toString().contains("搜索")
-                    && !item.getTitle().toString().contains("search")) {
-                return callback.onActionItemClicked(mode, item);
-            }
-            loadUrl("javascript:window.search.show(window.getSelection().toString());");
-            clearFocus();
             return true;
         }
 

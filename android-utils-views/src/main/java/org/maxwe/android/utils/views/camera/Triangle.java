@@ -40,7 +40,7 @@ public class Triangle {
             // the coordinates of the objects that use this vertex shader
             "uniform mat4 uMVPMatrix;" +
             "attribute vec4 vPosition;" +
-                    "void main() {" +
+                    "void btwebview() {" +
                     // the matrix must be included as a modifier of gl_Position
                     // Note that the uMVPMatrix factor *must be first* in order
                     // for the matrix multiplication product to be correct.
@@ -55,7 +55,7 @@ public class Triangle {
     private final String fragmentShaderCode =
             "precision mediump float;" +
                     "uniform vec4 vColor;" +
-                    "void main() {" +
+                    "void btwebview() {" +
                     "  gl_FragColor = vColor;" +
                     "}";
 

@@ -22,22 +22,22 @@ import android.view.SurfaceView;
  * 作图方法运用“五点法”作图
  * “五点作图法”即当ωx+φ分别取0，π/2，π，3π/2，2π时y的值.
  */
-public class MaxProgress extends SurfaceView implements SurfaceHolder.Callback {
+public class SineProgress extends SurfaceView implements SurfaceHolder.Callback {
     private Path path = new Path();
     private Paint paint = new Paint();
     private boolean drawing = false;
 
-    public MaxProgress(Context context) {
+    public SineProgress(Context context) {
         super(context);
         this.init();
     }
 
-    public MaxProgress(Context context, AttributeSet attrs) {
+    public SineProgress(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.init();
     }
 
-    public MaxProgress(Context context, AttributeSet attrs, int defStyleAttr) {
+    public SineProgress(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         this.init();
     }
@@ -74,7 +74,13 @@ public class MaxProgress extends SurfaceView implements SurfaceHolder.Callback {
                 int offset = φ;
                 while (drawing) {
                     offset ++;
+                    if (holder == null){
+                        break;
+                    }
                     Canvas canvas = holder.lockCanvas(new Rect(0, 0, width, height));
+                    if (canvas == null){
+                        break;
+                    }
                     canvas.drawColor(Color.BLACK);
                     paint.setColor(Color.rgb((int) (Math.random() * 255), (int) (Math.random() * 255), (int) (Math.random() * 255)));
 //                    canvas.drawLine(0, height / 2, width, height / 2, paint);
