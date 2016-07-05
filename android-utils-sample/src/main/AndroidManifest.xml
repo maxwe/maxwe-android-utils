@@ -32,6 +32,8 @@
         <activity android:name=".progress.ProgressActivity" android:theme="@android:style/Theme.Light" ></activity>
         <activity android:name=".camera.LocalCameraActivity" android:theme="@android:style/Theme.Black.NoTitleBar" ></activity>
         <activity android:name=".webview.BTAndroidWebViewSelectionActivity"></activity>
+        <activity android:name=".crop.CropActivity"></activity>
+        <activity android:name="org.maxwe.android.utils.views.crop.CropImageActivity" />
     </application>
 
 </manifest>

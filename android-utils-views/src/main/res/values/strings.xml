@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">android-utils-views</string>
+    <string name="org_maxwe_views_app_name">android-utils-views</string>
+    <string name="org_maxwe_views_crop_saving">保存中...</string>
+    <string name="org_maxwe_views_crop_wait">请稍等...</string>
+    <string name="org_maxwe_views_crop_pick_error">找不到图片...</string>
+    <string name="org_maxwe_views_crop_done">完成</string>
+    <string name="org_maxwe_views_crop_cancel">取消</string>
 </resources>

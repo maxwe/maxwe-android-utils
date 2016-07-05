@@ -48,7 +48,7 @@ public class HexagonContainer extends RelativeLayout {
 
     private void initAttr(AttributeSet attrs) {
         TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.HexagonContainer);
-        this.column = typedArray.getInteger(R.styleable.HexagonContainer_column, 1);
+        this.column = typedArray.getInteger(R.styleable.HexagonContainer_org_maxwe_views_column, 1);
         if (this.column < 1) {
             this.column = 1;
         }

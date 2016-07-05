@@ -85,6 +85,13 @@
                 android:onClick="onClick"
                 android:text="Progress" />
 
+            <Button
+                android:id="@+id/org_maxwe_demo_crop"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onClick"
+                android:text="Crop" />
+
         </LinearLayout>
 
     </ScrollView>

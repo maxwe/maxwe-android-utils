@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/done_cancel_bar"
+        layout="@layout/org_maxwe_views_crop_done_cancel" />
+
+    <org.maxwe.android.utils.views.crop.CropImageView
+        android:id="@+id/crop_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/org_maxwe_views_crop_texture"
+        android:layout_below="@id/done_cancel_bar" />
+
+</RelativeLayout>

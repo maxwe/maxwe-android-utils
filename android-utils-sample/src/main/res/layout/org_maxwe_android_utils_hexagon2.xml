@@ -4,7 +4,7 @@
         xmlns:hexagonContainer="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        hexagonContainer:column="4">
+        hexagonContainer:org_maxwe_views_column="4">
         <org.maxwe.android.utils.views.hexagon.HexagonView style="@style/org_maxwe_android_utils_hexagon_item">
                 <ImageView style="@style/org_maxwe_android_utils_hexagon_item_1" />
         </org.maxwe.android.utils.views.hexagon.HexagonView>

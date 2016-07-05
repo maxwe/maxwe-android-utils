@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="HexagonContainer">
-        <attr name="column" format="integer"></attr>
+        <attr name="org_maxwe_views_column" format="integer"></attr>
     </declare-styleable>
+
+    <attr name="org_maxwe_views_cropImageStyle" format="reference" />
+    <declare-styleable name="org_maxwe_views_cropImageView">
+        <attr name="org_maxwe_views_highlightColor" format="reference|color" />
+        <attr name="org_maxwe_views_showThirds" format="boolean" />
+        <attr name="org_maxwe_views_showCircle" format="boolean" />
+        <attr name="org_maxwe_views_showHandles">
+            <enum name="org_maxwe_views_changing" value="0" />
+            <enum name="org_maxwe_views_always" value="1" />
+            <enum name="org_maxwe_views_never" value="2" />
+        </attr>
+    </declare-styleable>
+
 </resources>

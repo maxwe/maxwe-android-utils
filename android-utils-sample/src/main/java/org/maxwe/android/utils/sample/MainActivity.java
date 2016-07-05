@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import org.maxwe.android.utils.sample.camera.LocalCameraActivity;
+import org.maxwe.android.utils.sample.crop.CropActivity;
 import org.maxwe.android.utils.sample.editer.EditerActivity;
 import org.maxwe.android.utils.sample.hexagon.HexagonActivity;
 import org.maxwe.android.utils.sample.progress.ProgressActivity;
@@ -67,6 +68,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             this.startActivity(intent);
         } else if (id == R.id.progress) {
             Intent intent = new Intent(this, ProgressActivity.class);
+            this.startActivity(intent);
+        } else if (id == R.id.org_maxwe_demo_crop){
+            Intent intent = new Intent(this, CropActivity.class);
             this.startActivity(intent);
         }
     }
